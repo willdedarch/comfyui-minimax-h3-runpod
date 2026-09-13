@@ -14,7 +14,7 @@ ast.parse(Path('/opt/h3-bootstrap.py').read_text())
 spec = importlib.util.spec_from_file_location('bootstrap', '/opt/h3-bootstrap.py')
 bootstrap = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bootstrap)
-url = f'https://raw.githubusercontent.com/Comfy-Org/workflow_templates/{bootstrap.WORKFLOW_COMMIT}/templates/video_minimax_h3_i2v.json'
+url = f'https://raw.githubusercontent.com/Comfy-Org/workflow_templates/{bootstrap.WORKFLOW_COMMIT}/templates/video_minimax_h3_{bootstrap.PROFILE}.json'
 with urllib.request.urlopen(url, timeout=60) as response:
     workflow = json.load(response)
 serialized = json.dumps(workflow)

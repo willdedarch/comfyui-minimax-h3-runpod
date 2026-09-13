@@ -18,6 +18,12 @@ MODELS = [
     ("Comfy-Org/MiniMax-H3", BASE_REV, "vae/minimax_h3_audio_vae_fp32.safetensors", "vae", 605254808, "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"),
     ("lightx2v/Minimax-h3-Turbo", LORA_REV, "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors", "loras", 1956193000, "2339acdf19bfe123f46b971ea35d367a84adb85de43627e1eceafa5a5b2b111e"),
 ]
+PROFILE = os.environ.get("H3_PROFILE", "i2v")
+if PROFILE not in {"i2v", "r2v"}:
+    raise ValueError("H3_PROFILE must be i2v or r2v")
+if PROFILE == "r2v":
+    MODELS[0] = ("Comfy-Org/MiniMax-H3", BASE_REV, "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors", "diffusion_models", 20970379616, "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779")
+    MODELS[4] = ("Comfy-Org/MiniMax-H3", BASE_REV, "loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors", "loras", 1956193000, "5b9ab5ade15d0775676d01a907268a69a1468dc6033b3b0d3ded5502f3ebb84c")
 
 def run(*args, **kwargs):
     subprocess.run(args, check=True, **kwargs)
@@ -60,8 +66,8 @@ def main():
             raise RuntimeError("Incorrect SHA256: " + source)
         target.parent.mkdir(parents=True, exist_ok=True)
         os.replace(fetched, target)
-    workflow_url = f"https://raw.githubusercontent.com/Comfy-Org/workflow_templates/{WORKFLOW_COMMIT}/templates/video_minimax_h3_i2v.json"
-    workflow_file = root / "user/default/workflows/MiniMax H3 - Official I2V.json"
+    workflow_url = f"https://raw.githubusercontent.com/Comfy-Org/workflow_templates/{WORKFLOW_COMMIT}/templates/video_minimax_h3_{PROFILE}.json"
+    workflow_file = root / f"user/default/workflows/MiniMax H3 - Official {PROFILE.upper()}.json"
     download(workflow_url, workflow_file)
     workflow = json.loads(workflow_file.read_text())
     all_text = json.dumps(workflow)

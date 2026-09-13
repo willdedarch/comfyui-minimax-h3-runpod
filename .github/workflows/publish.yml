@@ -29,10 +29,11 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/willdedarch/comfyui-minimax-h3-runpod:1.0.0
+          tags: ghcr.io/willdedarch/comfyui-minimax-h3-runpod:r2v-1.0.0
+          build-args: H3_PROFILE=r2v
           labels: |
             org.opencontainers.image.source=https://github.com/willdedarch/comfyui-minimax-h3-runpod
             org.opencontainers.image.description=Official Runpod ComfyUI with exact MiniMax H3 I2V weights downloaded at boot
       - name: Validate published image
         run: |
-          docker run --rm --entrypoint python3.12 ghcr.io/willdedarch/comfyui-minimax-h3-runpod:1.0.0 /opt/validate-image.py
+          docker run --rm --entrypoint python3.12 ghcr.io/willdedarch/comfyui-minimax-h3-runpod:r2v-1.0.0 /opt/validate-image.py

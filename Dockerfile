@@ -1,4 +1,6 @@
 FROM runpod/comfyui:1.4.7-cuda13.0@sha256:bad26aad809a442a0d2674827d58c03f95686d0ea6d0d0e0cbebacd787488797
+ARG H3_PROFILE=i2v
+ENV H3_PROFILE=${H3_PROFILE}
 COPY runpod-h3-bootstrap.py /opt/h3-bootstrap.py
 COPY validate-image.py /opt/validate-image.py
 ENV HF_HUB_ENABLE_HF_TRANSFER=0 HF_XET_HIGH_PERFORMANCE=1 PYTHONUNBUFFERED=1
