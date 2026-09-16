@@ -23,17 +23,22 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and publish
+      - name: Build combined image
         uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
-          push: true
-          tags: ghcr.io/willdedarch/comfyui-minimax-h3-runpod:r2v-1.0.0
-          build-args: H3_PROFILE=r2v
+          load: true
+          push: false
+          tags: ghcr.io/willdedarch/comfyui-minimax-h3-runpod:both-1.1.0
+          build-args: H3_PROFILE=both
           labels: |
             org.opencontainers.image.source=https://github.com/willdedarch/comfyui-minimax-h3-runpod
-            org.opencontainers.image.description=Official Runpod ComfyUI with exact MiniMax H3 I2V weights downloaded at boot
-      - name: Validate published image
+            org.opencontainers.image.description=Official Runpod ComfyUI with MiniMax H3 I2V and Reference-to-Video
+      - name: Validate both workflows before publishing
         run: |
-          docker run --rm --entrypoint python3.12 ghcr.io/willdedarch/comfyui-minimax-h3-runpod:r2v-1.0.0 /opt/validate-image.py
+          for profile in i2v r2v both; do
+            docker run --rm -e H3_PROFILE="$profile" --entrypoint python3.12 ghcr.io/willdedarch/comfyui-minimax-h3-runpod:both-1.1.0 /opt/validate-image.py
+          done
+      - name: Publish validated image
+        run: docker push ghcr.io/willdedarch/comfyui-minimax-h3-runpod:both-1.1.0

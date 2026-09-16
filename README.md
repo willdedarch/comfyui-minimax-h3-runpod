@@ -1,5 +1,31 @@
 # ComfyUI MiniMax H3 for disposable Runpod Pods
 
+## Combined I2V + Reference-to-Video
+
+`ghcr.io/willdedarch/comfyui-minimax-h3-runpod:both-1.1.0` defaults to
+`H3_PROFILE=both`. It preserves the same pinned official Runpod base image and
+original `/start.sh`, and installs both upstream workflows:
+
+- `MiniMax H3 - Official I2V.json`
+- `MiniMax H3 - Official R2V.json`
+
+Both retain their upstream settings, including the Turbo LoRAs. The combined
+image downloads seven files (about 67.35 GB): two diffusion models, two LoRAs,
+one shared Qwen encoder and two shared VAEs. This adds about 22.93 GB to the
+existing I2V download. Select the R2V workflow to use reference images.
+The models are downloaded at startup; ComfyUI, CUDA and PyTorch stay in the
+official image. Complete model files are checked and reused on later boots
+when the same storage remains available.
+
+Set `H3_PROFILE=i2v` or `H3_PROFILE=r2v` to download only one mode. The original
+versioned I2V and R2V images remain available. Updating a Runpod template applies
+to newly created Pods; existing Pods keep their original configuration.
+
+CI checks all three profiles inside the built image before publishing. These
+are CPU checks of the bundle and real workflow downloads, not GPU render tests.
+
+## Original single-mode images
+
 Based on the official `runpod/comfyui:1.4.7-cuda13.0` image, pinned by digest.
 The entrypoint copies the official bundled ComfyUI, downloads five exact models
 from pinned upstream revisions, validates SHA-256 and size, installs the official
