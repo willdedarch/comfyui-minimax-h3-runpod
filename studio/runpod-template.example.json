@@ -1,0 +1,31 @@
+{
+  "name": "H3 MAX 2026-09-23 — candidate",
+  "imageName": "YOUR_REGISTRY/YOUR_ACCOUNT/h3-max:2026-09-23",
+  "containerDiskInGb": 40,
+  "volumeInGb": 300,
+  "volumeMountPath": "/workspace",
+  "ports": "8188/http,8888/http,22/tcp",
+  "env": {
+    "H3MAX_ROOT": "/workspace/h3max",
+    "H3MAX_MODEL_GROUPS": "h3",
+    "H3MAX_DOWNLOAD_MODELS": "1",
+    "HF_TOKEN": "",
+    "HF_HOME": "/workspace/h3max/.cache/huggingface",
+    "HF_HUB_CACHE": "/workspace/h3max/.cache/huggingface/hub",
+    "HF_XET_CACHE": "/workspace/h3max/.cache/huggingface/xet",
+    "HF_ASSETS_CACHE": "/workspace/h3max/.cache/huggingface/assets",
+    "HF_XET_HIGH_PERFORMANCE": "1",
+    "HF_XET_CHUNK_CACHE_SIZE_BYTES": "0",
+    "HF_HUB_DOWNLOAD_TIMEOUT": "120",
+    "HF_HUB_ETAG_TIMEOUT": "30",
+    "HF_HUB_DISABLE_TELEMETRY": "1"
+  },
+  "notes": [
+    "Configuration reference; not a request body for a particular Runpod API version.",
+    "Leave Container Start Command empty to inherit the official /start.sh.",
+    "For data that survives Pod termination, attach a Network Volume mounted at /workspace.",
+    "The image contains software and workflows. Model weights download to the volume on first start.",
+    "Fill HF_TOKEN only in the Runpod environment before starting the Pod; never put a real token in this file.",
+    "Set JUPYTER_PASSWORD and PUBLIC_KEY only when those access methods are needed."
+  ]
+}

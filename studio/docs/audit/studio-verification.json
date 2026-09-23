@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-23",
+  "stage": "integrated_candidate",
+  "entrypoint": "/h3max",
+  "tests_run": 110,
+  "passed": 109,
+  "skipped": [
+    "Windows does not permit directory symlinks in this session; Linux CI covers the startup link."
+  ],
+  "browser_preview_verified": true,
+  "browser_prepare_with_refine_verified": true,
+  "browser_rendered_dimensions_and_duration_verified": true,
+  "browser_errors_observed": [],
+  "generated_videos": 0,
+  "http_integration": "aiohttp real; ComfyUI and GPU dependencies simulated",
+  "reference_media_tests": "real FFmpeg on synthetic VFR/audio and silent1080p files; see studio-media-verification.json",
+  "source_schema_cases": 348,
+  "source_schema_node_contracts": 29,
+  "image_build_executed": false,
+  "actual_comfy_boot_executed": false,
+  "gpu_inference_executed": false,
+  "seedance_comparison_executed": false,
+  "remote_image_published": false,
+  "runpod_template_created": false,
+  "not_integrated": [
+    "multimodal director analysis",
+    "Pose/ControlNet",
+    "V2V editing and continuation",
+    "LTX-2.5",
+    "official Context-IR and Regenerate-2K"
+  ],
+  "compatibility": [
+    "first/last frames use FL2VA; references use Ref2VA",
+    "last frame excludes temporal repair",
+    "weapon motion profile excludes appearance/camera LoRAs",
+    "audio-only references rejected",
+    "only supported inputs accepted; no silent feature dropping"
+  ],
+  "browser_camera_controls_verified": true,
+  "browser_static_camera_guard_verified": true,
+  "browser_audio_export_control_verified": true,
+  "browser_real_graph_inspection_verified": true,
+  "browser_graph_node_inputs_verified": true,
+  "browser_horizontal_page_overflow": false,
+  "durable_job_lifecycle_tested": true,
+  "partial_output_recovery_tested": true,
+  "camera_prompt_controls_tested": true,
+  "silent_export_graphs_tested": true,
+  "hf_token_runtime_only_tested": true,
+  "exact_job_graph_endpoint_tested": true
+}

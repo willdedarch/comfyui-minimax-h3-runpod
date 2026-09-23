@@ -1,0 +1,114 @@
+{
+  "id": 104,
+  "type": "MiniMaxH3ImageToVideo",
+  "pos": [
+    -1300,
+    4740
+  ],
+  "size": [
+    430,
+    550
+  ],
+  "flags": {},
+  "order": 13,
+  "mode": 0,
+  "inputs": [
+    {
+      "localized_name": "clip",
+      "name": "clip",
+      "type": "CLIP",
+      "link": 189
+    },
+    {
+      "localized_name": "vae",
+      "name": "vae",
+      "type": "VAE",
+      "link": 190
+    },
+    {
+      "localized_name": "first_frame",
+      "name": "first_frame",
+      "shape": 7,
+      "type": "IMAGE",
+      "link": 195
+    },
+    {
+      "localized_name": "last_frame",
+      "name": "last_frame",
+      "shape": 7,
+      "type": "IMAGE",
+      "link": 196
+    },
+    {
+      "localized_name": "prompt",
+      "name": "prompt",
+      "type": "STRING",
+      "widget": {
+        "name": "prompt"
+      },
+      "link": 197
+    },
+    {
+      "localized_name": "width",
+      "name": "width",
+      "type": "INT",
+      "widget": {
+        "name": "width"
+      },
+      "link": 200
+    },
+    {
+      "localized_name": "height",
+      "name": "height",
+      "type": "INT",
+      "widget": {
+        "name": "height"
+      },
+      "link": 201
+    },
+    {
+      "localized_name": "length",
+      "name": "length",
+      "type": "INT",
+      "widget": {
+        "name": "length"
+      },
+      "link": 199
+    }
+  ],
+  "outputs": [
+    {
+      "localized_name": "positive",
+      "name": "positive",
+      "type": "CONDITIONING",
+      "links": [
+        187
+      ]
+    },
+    {
+      "localized_name": "LATENT",
+      "name": "LATENT",
+      "type": "LATENT",
+      "links": [
+        188
+      ]
+    }
+  ],
+  "properties": {
+    "cnr_id": "comfy-core",
+    "ver": "0.33.0",
+    "Node name for S&R": "MiniMaxH3ImageToVideo"
+  },
+  "widgets_values": [
+    "Vaporwave title sequence look: pink and blue gradient palette, VHS tracking artifacts, Greek statue motifs, chrome palm trees, RGB chromatic aberration, lo-fi retro atmosphere, mood languid and nostalgic.\n\nTimeline:\n[0s-1s] VHS static opens the frame, the title \"COMFYUI\" appears with RGB split and a slight horizontal jitter.\n[1s-2.5s] Hard cut, a Greek plaster bust close-up, pink-purple gradient sky, a pixelated sun.\n[2.5s-4s] Clean \"STARRING\" credits appear, \"LATENT\" and \"CONTROLNET\" each shown exactly once.\n[4s-5s] Final card \"DIRECTED BY COMFYUI\" holds, one VHS tracking glitch settling into stability.\n\nHard cuts only, transitions landing with tape jumps, no push-ins, no dissolves.\n\nAudio: lo-fi vaporwave score, slow drum machine with soft bass, VHS tape-noise sample joins at 2.5s, melody fading for the last 1s.\n\nAll text must be clearly legible, do not misspell English, no Chinese characters, do not repeat names or job titles, no soft dissolves, no subtitle bars.",
+    1344,
+    768,
+    73
+  ],
+  "widgets_values_named": {
+    "prompt": "Vaporwave title sequence look: pink and blue gradient palette, VHS tracking artifacts, Greek statue motifs, chrome palm trees, RGB chromatic aberration, lo-fi retro atmosphere, mood languid and nostalgic.\n\nTimeline:\n[0s-1s] VHS static opens the frame, the title \"COMFYUI\" appears with RGB split and a slight horizontal jitter.\n[1s-2.5s] Hard cut, a Greek plaster bust close-up, pink-purple gradient sky, a pixelated sun.\n[2.5s-4s] Clean \"STARRING\" credits appear, \"LATENT\" and \"CONTROLNET\" each shown exactly once.\n[4s-5s] Final card \"DIRECTED BY COMFYUI\" holds, one VHS tracking glitch settling into stability.\n\nHard cuts only, transitions landing with tape jumps, no push-ins, no dissolves.\n\nAudio: lo-fi vaporwave score, slow drum machine with soft bass, VHS tape-noise sample joins at 2.5s, melody fading for the last 1s.\n\nAll text must be clearly legible, do not misspell English, no Chinese characters, do not repeat names or job titles, no soft dissolves, no subtitle bars.",
+    "width": 1344,
+    "height": 768,
+    "length": 73
+  }
+}

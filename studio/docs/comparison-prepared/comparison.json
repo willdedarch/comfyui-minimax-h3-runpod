@@ -1,0 +1,428 @@
+{
+  "status": "prepared_not_submitted",
+  "gpu_jobs_submitted": 0,
+  "template_sha256": "ab538f313397f7212e7fdb381d3302cc99ddc82d7c823972c4171bf963389df9",
+  "models_lock_sha256": "a414da8996ff6214d7dcd8332cd9c63dda8c12bb082d33c63b7ffff793295cc1",
+  "sources_lock_sha256": "a040f82eca7fb9c291c0f5811e4c4ad8a4dfa597e2b242ba9b98e2676d4f4095",
+  "protocol": {
+    "baseline_profile": "base",
+    "h3_seeds": [
+      123456789,
+      987654321
+    ],
+    "first_pass_seeds": [
+      123456789
+    ],
+    "second_seed_rule": "Repetir base e candidato na segunda seed somente nos casos em que se pretende promover um preset.",
+    "keep_constant": [
+      "prompt",
+      "referências",
+      "resolução",
+      "frames",
+      "fps",
+      "steps",
+      "sampler",
+      "scheduler",
+      "seed dentro do H3",
+      "versão dos modelos e software"
+    ],
+    "initially_disabled": [
+      "people_realism",
+      "camera_motion",
+      "director",
+      "refine",
+      "de_rope",
+      "turbo"
+    ],
+    "seedance_comparison": "Usar as mesmas seis cenas e referências, proporção e duração comparáveis; registrar versão e configurações reais. Seeds não são comparáveis entre modelos. Se o serviço só permitir 5 s, julgar o intervalo comum sem alterar velocidade. Normalizar tamanho apenas para exibição e guardar os originais.",
+    "review": "Julgar vídeos com rótulos cegos A/B/C em velocidade normal e quadro a quadro nos contatos. Guardar todas as tentativas, inclusive falhas, duração da geração e VRAM máxima. Aparência e física recebem notas separadas.",
+    "score_scale": {
+      "0": "falha evidente ou evento ausente",
+      "1": "parcial, com erro visível",
+      "2": "convincente nesta cena"
+    },
+    "critical_failures": [
+      "objeto ou membro desaparece/duplica",
+      "contato atravessa sem reação plausível",
+      "teleporte ou mudança abrupta de identidade",
+      "sequência solicitada não acontece"
+    ],
+    "promotion_rule": "Promover somente por domínio depois de revisar as duas seeds: o candidato não pode acrescentar falha crítica e deve melhorar um critério relevante sem degradar materialmente os demais. Resultado misto mantém escolha por cena. Nenhum resultado isolado autoriza equivalência geral ao Seedance."
+  },
+  "runs": [
+    {
+      "id": "people_walk_sit__base__123456789",
+      "case": "people_walk_sit",
+      "domain": "pessoas_movimento_natural",
+      "prompt_file": "people_walk_sit__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Os pés apoiados mantêm contato com o piso sem deslizar visivelmente.": null,
+        "O peso e o equilíbrio mudam de forma plausível entre andar, girar e sentar.": null,
+        "Cadeira, pernas, mãos e identidade permanecem contínuas.": null,
+        "A ação termina na cadeira em ritmo natural, sem aceleração ou câmera lenta inesperada.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "people_walk_sit__natural__123456789",
+      "case": "people_walk_sit",
+      "domain": "pessoas_movimento_natural",
+      "prompt_file": "people_walk_sit__natural__123456789.json",
+      "profile": "natural",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Os pés apoiados mantêm contato com o piso sem deslizar visivelmente.": null,
+        "O peso e o equilíbrio mudam de forma plausível entre andar, girar e sentar.": null,
+        "Cadeira, pernas, mãos e identidade permanecem contínuas.": null,
+        "A ação termina na cadeira em ritmo natural, sem aceleração ou câmera lenta inesperada.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "people_pickup_place__base__123456789",
+      "case": "people_pickup_place",
+      "domain": "pessoas_movimento_natural",
+      "prompt_file": "people_pickup_place__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "A mão pega a alça antes de a caneca se mover.": null,
+        "Dedos, alça e caneca não atravessam, fundem ou trocam de mão.": null,
+        "Caneca mantém forma, tamanho e identidade durante a trajetória.": null,
+        "O objeto para apoiado sobre a mesa e a expressão facial permanece contínua.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "people_pickup_place__natural__123456789",
+      "case": "people_pickup_place",
+      "domain": "pessoas_movimento_natural",
+      "prompt_file": "people_pickup_place__natural__123456789.json",
+      "profile": "natural",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "A mão pega a alça antes de a caneca se mover.": null,
+        "Dedos, alça e caneca não atravessam, fundem ou trocam de mão.": null,
+        "Caneca mantém forma, tamanho e identidade durante a trajetória.": null,
+        "O objeto para apoiado sobre a mesa e a expressão facial permanece contínua.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "action_pad_contact__base__123456789",
+      "case": "action_pad_contact",
+      "domain": "acao_contato",
+      "prompt_file": "action_pad_contact__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "A reação do aparador começa no contato, não antes nem muito depois.": null,
+        "Mão e aparador se encontram sem atravessamento ou fusão.": null,
+        "Apoio dos pés e recuo do corpo acompanham a transferência de movimento.": null,
+        "Braço se separa do aparador e retorna sem salto de pose ou membro extra.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "action_pad_contact__acao_corporal__123456789",
+      "case": "action_pad_contact",
+      "domain": "acao_contato",
+      "prompt_file": "action_pad_contact__acao_corporal__123456789.json",
+      "profile": "acao_corporal",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "A reação do aparador começa no contato, não antes nem muito depois.": null,
+        "Mão e aparador se encontram sem atravessamento ou fusão.": null,
+        "Apoio dos pés e recuo do corpo acompanham a transferência de movimento.": null,
+        "Braço se separa do aparador e retorna sem salto de pose ou membro extra.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "action_training_sticks__base__123456789",
+      "case": "action_training_sticks",
+      "domain": "acao_contato",
+      "prompt_file": "action_training_sticks__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Cada atleta mantém o mesmo bastão e a mesma pega durante toda a ação.": null,
+        "Bastões preservam comprimento e forma, sem sumir ou multiplicar.": null,
+        "Bloqueio acontece com contato coerente, desvio e separação posterior.": null,
+        "Pés, tronco e deslocamento acompanham a ação sem teleporte ou escorregamento.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "action_training_sticks__acao_com_arma__123456789",
+      "case": "action_training_sticks",
+      "domain": "acao_contato",
+      "prompt_file": "action_training_sticks__acao_com_arma__123456789.json",
+      "profile": "acao_com_arma",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Cada atleta mantém o mesmo bastão e a mesma pega durante toda a ação.": null,
+        "Bastões preservam comprimento e forma, sem sumir ou multiplicar.": null,
+        "Bloqueio acontece com contato coerente, desvio e separação posterior.": null,
+        "Pés, tronco e deslocamento acompanham a ação sem teleporte ou escorregamento.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "objects_ball_collision__base__123456789",
+      "case": "objects_ball_collision",
+      "domain": "objetos_colisoes_liquidos",
+      "prompt_file": "objects_ball_collision__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Há exatamente duas bolas contínuas, com forma e cores estáveis.": null,
+        "A bola vermelha começa a se mover depois do contato.": null,
+        "As bolas não atravessam, grudam, saltam sem causa ou mudam de tamanho.": null,
+        "A velocidade e a direção após a colisão são visualmente plausíveis e desaceleram sem ganho espontâneo de energia.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "objects_ball_collision__objetos_experimental__123456789",
+      "case": "objects_ball_collision",
+      "domain": "objetos_colisoes_liquidos",
+      "prompt_file": "objects_ball_collision__objetos_experimental__123456789.json",
+      "profile": "objetos_experimental",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "Há exatamente duas bolas contínuas, com forma e cores estáveis.": null,
+        "A bola vermelha começa a se mover depois do contato.": null,
+        "As bolas não atravessam, grudam, saltam sem causa ou mudam de tamanho.": null,
+        "A velocidade e a direção após a colisão são visualmente plausíveis e desaceleram sem ganho espontâneo de energia.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "liquids_pour_water__base__123456789",
+      "case": "liquids_pour_water",
+      "domain": "objetos_colisoes_liquidos",
+      "prompt_file": "liquids_pour_water__base__123456789.json",
+      "profile": "base",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "O fluxo parte do bico e segue até o copo sem trechos flutuantes.": null,
+        "O nível no copo sobe enquanto há fluxo; o nível na jarra não cresce simultaneamente.": null,
+        "A água fica contida pelos recipientes e mantém superfície plausível.": null,
+        "Ao desinclinar a jarra, o fluxo cessa sem se transformar em corda, sólido ou objeto diferente.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "id": "liquids_pour_water__objetos_experimental__123456789",
+      "case": "liquids_pour_water",
+      "domain": "objetos_colisoes_liquidos",
+      "prompt_file": "liquids_pour_water__objetos_experimental__123456789.json",
+      "profile": "objetos_experimental",
+      "seed": 123456789,
+      "status": "not_run",
+      "output_file": null,
+      "render_seconds": null,
+      "peak_vram_gb": null,
+      "critical_failure": null,
+      "blind_label": null,
+      "physics_scores": {
+        "O fluxo parte do bico e segue até o copo sem trechos flutuantes.": null,
+        "O nível no copo sobe enquanto há fluxo; o nível na jarra não cresce simultaneamente.": null,
+        "A água fica contida pelos recipientes e mantém superfície plausível.": null,
+        "Ao desinclinar a jarra, o fluxo cessa sem se transformar em corda, sólido ou objeto diferente.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    }
+  ],
+  "seedance_cases": [
+    {
+      "case": "people_walk_sit",
+      "prompt": "A single continuous five-second live-action shot, fixed wide camera, full body and shoes visible. An adult woman in everyday clothes takes two relaxed steps toward a plain wooden chair on a level tiled floor, turns, and sits down naturally. Her feet support her weight before her hips touch the seat; the chair stays in place. Soft daylight, ordinary documentary appearance, natural real-time pace. Quiet room tone and subtle footstep and chair sounds. The entire action remains visible without a cut.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "Os pés apoiados mantêm contato com o piso sem deslizar visivelmente.": null,
+        "O peso e o equilíbrio mudam de forma plausível entre andar, girar e sentar.": null,
+        "Cadeira, pernas, mãos e identidade permanecem contínuas.": null,
+        "A ação termina na cadeira em ritmo natural, sem aceleração ou câmera lenta inesperada.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "case": "people_pickup_place",
+      "prompt": "A single continuous five-second live-action medium shot from a fixed camera. An adult man is seated at a kitchen table, with his face, right hand and an empty ceramic mug clearly visible. He grips the mug by its handle with his right hand, lifts it a short distance, glances at it, and gently sets it back on the same table. His fingers remain around the same handle while the mug moves. Soft window light, natural skin texture and an ordinary relaxed expression. Real-time movement, quiet room ambience, one soft ceramic contact sound when the mug returns to the table.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "A mão pega a alça antes de a caneca se mover.": null,
+        "Dedos, alça e caneca não atravessam, fundem ou trocam de mão.": null,
+        "Caneca mantém forma, tamanho e identidade durante a trajetória.": null,
+        "O objeto para apoiado sobre a mesa e a expressão facial permanece contínua.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "case": "action_pad_contact",
+      "prompt": "A single continuous five-second live-action wide shot of two adult athletes practicing safely in a bright gym. Both full bodies and feet remain visible. One athlete holds a large padded training shield firmly in front of the torso. The other athlete steps forward and delivers one controlled straight punch into the center of the shield, then withdraws the hand and returns to a balanced stance. The pad and holder move backward slightly at contact and settle. Clear real-time action, fixed camera, ordinary lighting, gym room tone and a single padded impact sound. No cuts.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "A reação do aparador começa no contato, não antes nem muito depois.": null,
+        "Mão e aparador se encontram sem atravessamento ou fusão.": null,
+        "Apoio dos pés e recuo do corpo acompanham a transferência de movimento.": null,
+        "Braço se separa do aparador e retorna sem salto de pose ou membro extra.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "case": "action_training_sticks",
+      "prompt": "BUNNY. A single continuous five-second live-action wide shot of two adult athletes in protective training clothes practicing with padded foam sticks in an open gym. Both full bodies and both sticks stay clearly visible. The athlete on the left makes one moderate diagonal swing; the athlete on the right blocks it with the other stick. The two sticks touch briefly, deflect, separate, and both athletes step back into a balanced guard. Safe controlled practice, fixed camera, natural real-time speed, neutral daylight, room tone and a soft padded contact sound. No cuts.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "Cada atleta mantém o mesmo bastão e a mesma pega durante toda a ação.": null,
+        "Bastões preservam comprimento e forma, sem sumir ou multiplicar.": null,
+        "Bloqueio acontece com contato coerente, desvio e separação posterior.": null,
+        "Pés, tronco e deslocamento acompanham a ação sem teleporte ou escorregamento.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "case": "objects_ball_collision",
+      "prompt": "A single continuous five-second live-action close shot from a fixed slightly elevated camera of a level green billiard table. Exactly two equal-sized balls are visible: one white ball moving slowly from left to right and one red ball initially resting ahead of it. The white ball strikes the red ball once. After contact the red ball rolls away to the right and the white ball slows substantially. Both stay on the table and gradually slow from friction. The camera remains fixed, the balls retain their colors and round shapes, and a single clean click accompanies the collision. Natural real-time speed, no cuts.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "Há exatamente duas bolas contínuas, com forma e cores estáveis.": null,
+        "A bola vermelha começa a se mover depois do contato.": null,
+        "As bolas não atravessam, grudam, saltam sem causa ou mudam de tamanho.": null,
+        "A velocidade e a direção após a colisão são visualmente plausíveis e desaceleram sem ganho espontâneo de energia.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    },
+    {
+      "case": "liquids_pour_water",
+      "prompt": "A single continuous five-second live-action close shot from a fixed camera of a clear glass pitcher held above a clear drinking glass on a level kitchen counter. An adult hand tilts the pitcher and pours a steady narrow stream of water into the glass, then brings the pitcher upright to stop pouring. The water level in the glass visibly rises while the water level in the pitcher falls. The stream follows gravity into the glass, with small ripples on the surface, and stops naturally after the pitcher is upright. Soft side lighting, real-time motion, quiet water-pouring sounds and no cuts.",
+      "requested_version": "Seedance 2.5",
+      "actual_version": null,
+      "actual_settings": null,
+      "status": "not_run",
+      "output_file": null,
+      "critical_failure": null,
+      "physics_scores": {
+        "O fluxo parte do bico e segue até o copo sem trechos flutuantes.": null,
+        "O nível no copo sobe enquanto há fluxo; o nível na jarra não cresce simultaneamente.": null,
+        "A água fica contida pelos recipientes e mantém superfície plausível.": null,
+        "Ao desinclinar a jarra, o fluxo cessa sem se transformar em corda, sólido ou objeto diferente.": null
+      },
+      "appearance_score": null,
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+name: Build H3 MAX image
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the tested software image to GHCR
+        type: boolean
+        default: false
+      reclaim_runner_disk:
+        description: Remove unused Android and .NET SDKs on the disposable GitHub runner
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: h3-max-image-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ${{ vars.H3MAX_BUILD_RUNNER || 'ubuntu-24.04' }}
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      packages: write
+    env:
+      LOCAL_IMAGE: h3-max:ci
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Validate candidate
+        run: |
+          python -m pip install aiohttp==3.14.1
+          python scripts/validate.py
+          python -m unittest discover -s tests -v
+          python scripts/build_workflows.py
+          git diff --exit-code -- workflows api_prompts
+      - name: Prepare disposable runner storage
+        if: inputs.reclaim_runner_disk && runner.environment == 'github-hosted'
+        run: |
+          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          df -h / /var/lib/docker
+      - name: Require room for CUDA layers
+        run: |
+          free_kb=$(df -Pk /var/lib/docker | awk 'NR==2 {print $4}')
+          if [ "$free_kb" -lt 52428800 ]; then
+            echo 'At least 50 GiB free are required before build. Configure H3MAX_BUILD_RUNNER with more disk.' >&2
+            exit 1
+          fi
+          mkdir -p build-artifacts
+      - name: Build Linux amd64 software image without model weights
+        env:
+          SOURCE_URL: ${{ github.server_url }}/${{ github.repository }}
+          SOURCE_REVISION: ${{ github.sha }}
+        run: |
+          set -o pipefail
+          docker build --platform linux/amd64 --progress plain \
+            --label "org.opencontainers.image.source=$SOURCE_URL" \
+            --label "org.opencontainers.image.revision=$SOURCE_REVISION" \
+            -t "$LOCAL_IMAGE" . 2>&1 | tee build-artifacts/build.log
+      - name: Validate CPU boot and node registration without inference
+        run: |
+          docker run --rm --entrypoint python \
+            -e H3MAX_DOWNLOAD_MODELS=0 \
+            -v "$PWD/build-artifacts:/artifacts" \
+            "$LOCAL_IMAGE" /opt/h3-max/scripts/check_image.py --output /artifacts
+          docker image inspect "$LOCAL_IMAGE" > build-artifacts/image-inspect.json
+      - name: Publish only after build and registration checks
+        if: inputs.publish
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          GH_REPOSITORY: ${{ github.repository }}
+          GH_REVISION: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          registry_image="ghcr.io/${GH_REPOSITORY,,}/h3-max"
+          image_tag="${registry_image}:sha-${GH_REVISION:0:12}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GH_ACTOR" --password-stdin
+          trap 'docker logout ghcr.io >/dev/null 2>&1 || true' EXIT
+          docker tag "$LOCAL_IMAGE" "$image_tag"
+          docker push "$image_tag" | tee build-artifacts/push.log
+          image_ref=$(docker image inspect "$image_tag" --format '{{index .RepoDigests 0}}')
+          printf '%s\n' "$image_ref" > build-artifacts/image-reference.txt
+          python scripts/prepare_template.py --image "$image_ref" --output build-artifacts/runpod-template.v2.json
+          printf 'Image: `%s`\n\nGPU rendering and visual quality remain unverified.\n' "$image_ref" >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep logs and exact image reference
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: h3-max-build-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build-artifacts/
+          if-no-files-found: warn
+          retention-days: 14

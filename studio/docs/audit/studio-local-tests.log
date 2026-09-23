@@ -1,0 +1,14 @@
+Downloading owner/model/model.safetensors
+Downloading owner/model/model.safetensors
+SHA256 OK: model.safetensors
+Downloading owner/model/model.safetensors
+SHA256 OK: model.safetensors
+Receipt cache is unreadable; existing models will be hashed again.
+SHA256 OK: model.safetensors
+Downloading owner/model/model.safetensors
+SHA256 OK: model.safetensors
+Executing <Task pending name='Task-1' coro=<StudioHTTPTests.asyncSetUp() running at D:\gpu-runpod\h3-max-runpod\tests\test_studio_http.py:62> cb=[_run_until_complete_cb() at C:\Users\will\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py:181] created at C:\Users\will\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py:100> took 0.328 seconds
+----------------------------------------------------------------------
+Ran 110 tests in 4.481s
+
+OK (skipped=1)

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "status": "planned_not_rendered",
+  "purpose": "Seleção prática por domínio; não é prova de equivalência geral com Seedance 2.5 nem validação de um simulador físico.",
+  "protocol": {
+    "baseline_profile": "base",
+    "h3_seeds": [
+      123456789,
+      987654321
+    ],
+    "first_pass_seeds": [
+      123456789
+    ],
+    "second_seed_rule": "Repetir base e candidato na segunda seed somente nos casos em que se pretende promover um preset.",
+    "keep_constant": [
+      "prompt",
+      "referências",
+      "resolução",
+      "frames",
+      "fps",
+      "steps",
+      "sampler",
+      "scheduler",
+      "seed dentro do H3",
+      "versão dos modelos e software"
+    ],
+    "initially_disabled": [
+      "people_realism",
+      "camera_motion",
+      "director",
+      "refine",
+      "de_rope",
+      "turbo"
+    ],
+    "seedance_comparison": "Usar as mesmas seis cenas e referências, proporção e duração comparáveis; registrar versão e configurações reais. Seeds não são comparáveis entre modelos. Se o serviço só permitir 5 s, julgar o intervalo comum sem alterar velocidade. Normalizar tamanho apenas para exibição e guardar os originais.",
+    "review": "Julgar vídeos com rótulos cegos A/B/C em velocidade normal e quadro a quadro nos contatos. Guardar todas as tentativas, inclusive falhas, duração da geração e VRAM máxima. Aparência e física recebem notas separadas.",
+    "score_scale": {
+      "0": "falha evidente ou evento ausente",
+      "1": "parcial, com erro visível",
+      "2": "convincente nesta cena"
+    },
+    "critical_failures": [
+      "objeto ou membro desaparece/duplica",
+      "contato atravessa sem reação plausível",
+      "teleporte ou mudança abrupta de identidade",
+      "sequência solicitada não acontece"
+    ],
+    "promotion_rule": "Promover somente por domínio depois de revisar as duas seeds: o candidato não pode acrescentar falha crítica e deve melhorar um critério relevante sem degradar materialmente os demais. Resultado misto mantém escolha por cena. Nenhum resultado isolado autoriza equivalência geral ao Seedance."
+  },
+  "cases": [
+    {
+      "id": "people_walk_sit",
+      "domain": "pessoas_movimento_natural",
+      "title": "Caminhar, parar e sentar",
+      "prompt": "A single continuous five-second live-action shot, fixed wide camera, full body and shoes visible. An adult woman in everyday clothes takes two relaxed steps toward a plain wooden chair on a level tiled floor, turns, and sits down naturally. Her feet support her weight before her hips touch the seat; the chair stays in place. Soft daylight, ordinary documentary appearance, natural real-time pace. Quiet room tone and subtle footstep and chair sounds. The entire action remains visible without a cut.",
+      "recommended_profile": "natural",
+      "evidence_level": "hipótese apoiada por demonstrações do autor de Motion Repair; sem validação deste pacote",
+      "checks": [
+        "Os pés apoiados mantêm contato com o piso sem deslizar visivelmente.",
+        "O peso e o equilíbrio mudam de forma plausível entre andar, girar e sentar.",
+        "Cadeira, pernas, mãos e identidade permanecem contínuas.",
+        "A ação termina na cadeira em ritmo natural, sem aceleração ou câmera lenta inesperada."
+      ],
+      "appearance_check": "Pele, roupa e rosto mantêm textura natural; julgar separadamente de movimento."
+    },
+    {
+      "id": "people_pickup_place",
+      "domain": "pessoas_movimento_natural",
+      "title": "Pegar e devolver uma caneca",
+      "prompt": "A single continuous five-second live-action medium shot from a fixed camera. An adult man is seated at a kitchen table, with his face, right hand and an empty ceramic mug clearly visible. He grips the mug by its handle with his right hand, lifts it a short distance, glances at it, and gently sets it back on the same table. His fingers remain around the same handle while the mug moves. Soft window light, natural skin texture and an ordinary relaxed expression. Real-time movement, quiet room ambience, one soft ceramic contact sound when the mug returns to the table.",
+      "recommended_profile": "natural",
+      "evidence_level": "teste de coordenação e continuidade; não há garantia de destreza fina",
+      "checks": [
+        "A mão pega a alça antes de a caneca se mover.",
+        "Dedos, alça e caneca não atravessam, fundem ou trocam de mão.",
+        "Caneca mantém forma, tamanho e identidade durante a trajetória.",
+        "O objeto para apoiado sobre a mesa e a expressão facial permanece contínua."
+      ],
+      "appearance_check": "Após escolher o perfil de movimento, testar Realism People 0,65 como única variável adicional; não misturar esta comparação com a primeira."
+    },
+    {
+      "id": "action_pad_contact",
+      "domain": "acao_contato",
+      "title": "Soco em aparador de treino",
+      "prompt": "A single continuous five-second live-action wide shot of two adult athletes practicing safely in a bright gym. Both full bodies and feet remain visible. One athlete holds a large padded training shield firmly in front of the torso. The other athlete steps forward and delivers one controlled straight punch into the center of the shield, then withdraws the hand and returns to a balanced stance. The pad and holder move backward slightly at contact and settle. Clear real-time action, fixed camera, ordinary lighting, gym room tone and a single padded impact sound. No cuts.",
+      "recommended_profile": "acao_corporal",
+      "evidence_level": "Combat V2 documenta continuidade e reação ao contato; força 0,8 é candidata do pacote, não ótimo demonstrado",
+      "checks": [
+        "A reação do aparador começa no contato, não antes nem muito depois.",
+        "Mão e aparador se encontram sem atravessamento ou fusão.",
+        "Apoio dos pés e recuo do corpo acompanham a transferência de movimento.",
+        "Braço se separa do aparador e retorna sem salto de pose ou membro extra."
+      ],
+      "appearance_check": "Preservar aparência de pessoas filmadas; registrar se o preset introduzir aspecto de jogo ou CG."
+    },
+    {
+      "id": "action_training_sticks",
+      "domain": "acao_contato",
+      "title": "Bloqueio com bastões de espuma",
+      "prompt": "BUNNY. A single continuous five-second live-action wide shot of two adult athletes in protective training clothes practicing with padded foam sticks in an open gym. Both full bodies and both sticks stay clearly visible. The athlete on the left makes one moderate diagonal swing; the athlete on the right blocks it with the other stick. The two sticks touch briefly, deflect, separate, and both athletes step back into a balanced guard. Safe controlled practice, fixed camera, natural real-time speed, neutral daylight, room tone and a soft padded contact sound. No cuts.",
+      "recommended_profile": "acao_com_arma",
+      "evidence_level": "Weapon Combat V1 é especializado; peso 0,45 vem de demonstração comunitária, não recomendação universal",
+      "checks": [
+        "Cada atleta mantém o mesmo bastão e a mesma pega durante toda a ação.",
+        "Bastões preservam comprimento e forma, sem sumir ou multiplicar.",
+        "Bloqueio acontece com contato coerente, desvio e separação posterior.",
+        "Pés, tronco e deslocamento acompanham a ação sem teleporte ou escorregamento."
+      ],
+      "appearance_check": "Avaliar nitidez de movimento sem premiar supressão irreal de motion blur.",
+      "constraints": [
+        "Usar Weapon Combat sozinho; não empilhar com Combat V2 ou Motion Repair nesta rodada.",
+        "Trigger BUNNY incluído no texto comum a base e LoRA para a ablação; registrar possível efeito semântico do token na base. A comparação avalia esta receita específica."
+      ],
+      "trigger": "BUNNY"
+    },
+    {
+      "id": "objects_ball_collision",
+      "domain": "objetos_colisoes_liquidos",
+      "title": "Colisão de duas bolas",
+      "prompt": "A single continuous five-second live-action close shot from a fixed slightly elevated camera of a level green billiard table. Exactly two equal-sized balls are visible: one white ball moving slowly from left to right and one red ball initially resting ahead of it. The white ball strikes the red ball once. After contact the red ball rolls away to the right and the white ball slows substantially. Both stay on the table and gradually slow from friction. The camera remains fixed, the balls retain their colors and round shapes, and a single clean click accompanies the collision. Natural real-time speed, no cuts.",
+      "recommended_profile": "objetos_experimental",
+      "evidence_level": "Spatial Physics documenta objetos rígidos/colisões, mas o autor relata instabilidade e ganho limitado",
+      "checks": [
+        "Há exatamente duas bolas contínuas, com forma e cores estáveis.",
+        "A bola vermelha começa a se mover depois do contato.",
+        "As bolas não atravessam, grudam, saltam sem causa ou mudam de tamanho.",
+        "A velocidade e a direção após a colisão são visualmente plausíveis e desaceleram sem ganho espontâneo de energia."
+      ],
+      "appearance_check": "Não confundir textura bonita ou câmera em movimento com correção da colisão."
+    },
+    {
+      "id": "liquids_pour_water",
+      "domain": "objetos_colisoes_liquidos",
+      "title": "Verter água para um copo",
+      "prompt": "A single continuous five-second live-action close shot from a fixed camera of a clear glass pitcher held above a clear drinking glass on a level kitchen counter. An adult hand tilts the pitcher and pours a steady narrow stream of water into the glass, then brings the pitcher upright to stop pouring. The water level in the glass visibly rises while the water level in the pitcher falls. The stream follows gravity into the glass, with small ripples on the surface, and stops naturally after the pitcher is upright. Soft side lighting, real-time motion, quiet water-pouring sounds and no cuts.",
+      "recommended_profile": "objetos_experimental",
+      "evidence_level": "ablação exploratória: não foi encontrada validação específica de líquidos para nenhum adaptador deste pacote; base pode vencer",
+      "checks": [
+        "O fluxo parte do bico e segue até o copo sem trechos flutuantes.",
+        "O nível no copo sobe enquanto há fluxo; o nível na jarra não cresce simultaneamente.",
+        "A água fica contida pelos recipientes e mantém superfície plausível.",
+        "Ao desinclinar a jarra, o fluxo cessa sem se transformar em corda, sólido ou objeto diferente."
+      ],
+      "appearance_check": "Avaliar transparência e reflexos separadamente da continuidade e do comportamento do fluido.",
+      "constraints": [
+        "Não anunciar o preset como correção de líquidos antes dos renders.",
+        "Inspeção visual não demonstra conservação quantitativa de massa nem validação física científica."
+      ]
+    }
+  ]
+}

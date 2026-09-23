@@ -1,0 +1,46 @@
+test_pairs_preserve_scene_seed_and_parameters (test_comparison.ComparisonTests.test_pairs_preserve_scene_seed_and_parameters) ... ok
+test_bad_download_is_never_promoted (test_download_models.DownloadTests.test_bad_download_is_never_promoted) ... Downloading owner/model/model.safetensors
+ok
+test_download_pins_revision_verifies_and_promotes (test_download_models.DownloadTests.test_download_pins_revision_verifies_and_promotes) ... Downloading owner/model/model.safetensors
+SHA256 OK: model.safetensors
+ok
+test_existing_corrupt_file_is_preserved_and_not_downloaded (test_download_models.DownloadTests.test_existing_corrupt_file_is_preserved_and_not_downloaded) ... ok
+test_group_whitespace_and_empty_selection (test_download_models.DownloadTests.test_group_whitespace_and_empty_selection) ... ok
+test_rejects_unsafe_destinations_before_download (test_download_models.DownloadTests.test_rejects_unsafe_destinations_before_download) ... ok
+test_truncated_receipt_rehashes_existing_file (test_download_models.DownloadTests.test_truncated_receipt_rehashes_existing_file) ... Receipt cache is unreadable; existing models will be hashed again.
+SHA256 OK: model.safetensors
+ok
+test_verify_only_checks_hash_even_with_matching_receipt (test_download_models.DownloadTests.test_verify_only_checks_hash_even_with_matching_receipt) ... Downloading owner/model/model.safetensors
+SHA256 OK: model.safetensors
+ok
+test_volume_lock_rejects_competing_download_and_releases (test_download_models.DownloadTests.test_volume_lock_rejects_competing_download_and_releases) ... ok
+test_compiler_gate_imports_and_reads_contract_without_compiling (test_runtime.InstalledPackGateTests.test_compiler_gate_imports_and_reads_contract_without_compiling) ... ok
+test_compiler_gate_refuses_broken_import_and_missing_contract (test_runtime.InstalledPackGateTests.test_compiler_gate_refuses_broken_import_and_missing_contract) ... ok
+test_every_installed_pack_is_reported_even_when_unused (test_runtime.InstalledPackGateTests.test_every_installed_pack_is_reported_even_when_unused) ... ok
+test_similar_module_name_cannot_satisfy_missing_pack (test_runtime.InstalledPackGateTests.test_similar_module_name_cannot_satisfy_missing_pack) ... ok
+test_unused_pack_import_failure_is_not_hidden_by_workflow_coverage (test_runtime.InstalledPackGateTests.test_unused_pack_import_failure_is_not_hidden_by_workflow_coverage) ... ok
+test_base_does_not_load_any_lora (test_runtime.PresetRegressionTests.test_base_does_not_load_any_lora) ... ok
+test_natural_uses_model_only_native_signature (test_runtime.PresetRegressionTests.test_natural_uses_model_only_native_signature) ... ok
+test_weapon_trigger_only_when_enabled_and_not_duplicated (test_runtime.PresetRegressionTests.test_weapon_trigger_only_when_enabled_and_not_duplicated) ... ok
+test_image_smoke_requires_actual_input_names (test_runtime.RuntimeSchemaTests.test_image_smoke_requires_actual_input_names) ... ok
+test_legacy_codec_cannot_replace_required_nested_codec (test_runtime.RuntimeSchemaTests.test_legacy_codec_cannot_replace_required_nested_codec) ... ok
+test_nodes_only_skips_files_but_not_invalid_sampler (test_runtime.RuntimeSchemaTests.test_nodes_only_skips_files_but_not_invalid_sampler) ... ok
+test_pinned_save_video_contract_accepts_nested_codec (test_runtime.RuntimeSchemaTests.test_pinned_save_video_contract_accepts_nested_codec) ... ok
+test_reference_autogrow_contract_has_bounds (test_runtime.RuntimeSchemaTests.test_reference_autogrow_contract_has_bounds) ... ok
+test_smoke_keeps_dilated_length_link (test_runtime.RuntimeSchemaTests.test_smoke_keeps_dilated_length_link) ... ok
+test_success_needs_saved_file_metadata (test_runtime.RuntimeSchemaTests.test_success_needs_saved_file_metadata) ... ok
+test_wrong_output_type_and_slot_fail (test_runtime.RuntimeSchemaTests.test_wrong_output_type_and_slot_fail) ... ok
+test_bad_options_fail_before_downloading (test_start.StartTests.test_bad_options_fail_before_downloading) ... ok
+test_cpu_and_memory_flags_are_forwarded_as_arguments (test_start.StartTests.test_cpu_and_memory_flags_are_forwarded_as_arguments) ... ok
+test_restart_preserves_user_workflow_and_image_model_directory (test_start.StartTests.test_restart_preserves_user_workflow_and_image_model_directory) ... skipped "Directory symlinks unavailable: [WinError 1314] O cliente não tem o privilégio necessário: 'C:\\\\Users\\\\will\\\\AppData\\\\Local\\\\Temp\\\\tmp4sx8g_m6\\\\comfy' -> 'C:\\\\Users\\\\will\\\\AppData\\\\Local\\\\Temp\\\\tmp4sx8g_m6\\\\link-probe'"
+test_preserves_startup_and_does_not_claim_network_volume (test_template.TemplateTests.test_preserves_startup_and_does_not_claim_network_volume) ... ok
+test_rejects_mutable_and_placeholder_images (test_template.TemplateTests.test_rejects_mutable_and_placeholder_images) ... ok
+test_all_eight_api_exports_match_editable_workflows (test_validation.ValidationTests.test_all_eight_api_exports_match_editable_workflows) ... ok
+test_api_parameter_drift_is_rejected (test_validation.ValidationTests.test_api_parameter_drift_is_rejected) ... ok
+test_negative_output_slot_is_rejected (test_validation.ValidationTests.test_negative_output_slot_is_rejected) ... ok
+test_second_pass_lora_does_not_stack_over_first_pass (test_validation.ValidationTests.test_second_pass_lora_does_not_stack_over_first_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.189s
+
+OK (skipped=1)

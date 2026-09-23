@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+*.pem
+*.key
+*.zip
+__pycache__
+*.pyc
+verification-local.json
+models
+input
+output
+credentials
+.github
+build-artifacts
+benchmark-runs
+.venv

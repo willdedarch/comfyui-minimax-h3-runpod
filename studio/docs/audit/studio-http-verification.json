@@ -1,0 +1,38 @@
+{
+  "verified_at_utc": "2026-09-23T15:23:35.650352+00:00",
+  "kind": "HTTP integration using real aiohttp TestClient/TestServer",
+  "python": "3.11.9",
+  "aiohttp": "3.14.1",
+  "simulated_dependencies": [
+    "folder_paths: model/file registry",
+    "torch.cuda.is_available: false",
+    "comfy.cli_args: cpu=true",
+    "native ComfyUI root: placeholder response"
+  ],
+  "real_components": [
+    "aiohttp Application and router",
+    "HTTP middleware redirect",
+    "FileResponse for Studio HTML/CSS/JS",
+    "JSON request parsing and error responses",
+    "studio_recipe compiler and preflight model lookup"
+  ],
+  "tests_file": "tests/test_studio_http.py",
+  "command": "py -3.11 -m unittest discover -s tests -p test_studio_http.py -v",
+  "passed": 6,
+  "checks": {
+    "root": "302 -> /h3max",
+    "native_entry": "GET /?comfy=1 passes through middleware",
+    "studio_assets": "/h3max, /h3max/, studio.css and studio.js return 200; unknown file 404",
+    "capabilities": "runtime_ready=false and quality_validated=false; readiness stays false without GPU even when weights are simulated present",
+    "invalid_request": "400 for malformed JSON, missing prompt, unsupported duration, list and null bodies",
+    "missing_models": "400 with actionable missing-model error",
+    "prepare_with_simulated_models": "200 compiled graph and requested seed; no prompt_id and no queue access"
+  },
+  "studio_routes_sha256": "6de32be1229133fc3ca17d5a3c89605b85af5f5f32e791a246a23994d3150eb5",
+  "comfyui_boot_tested": false,
+  "gpu_generation_tested": false,
+  "limitations": [
+    "Server/GPU/model registry dependencies were simulated. This is not a ComfyUI boot or model-loading test.",
+    "No paid infrastructure, video generation, media upload or GPU was used."
+  ]
+}
