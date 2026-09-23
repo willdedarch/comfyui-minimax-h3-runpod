@@ -16,7 +16,8 @@ spec.loader.exec_module(module)
 
 class StartTests(unittest.TestCase):
     def test_bad_options_fail_before_downloading(self):
-        for value in ('{"cpu": true}', '[12]', '["--port", "9999"]', '["--output-directory=/tmp"]'):
+        for value in ('{"cpu": true}', '[12]', '["--port", "9999"]',
+                      '["--output-directory=/tmp"]', '["--models-directory=/tmp"]'):
             with self.subTest(value=value), mock.patch.dict(os.environ, {"H3MAX_COMFY_ARGS": value}):
                 with mock.patch.object(module.subprocess, "run") as run, self.assertRaises(ValueError):
                     module.main()
@@ -26,7 +27,7 @@ class StartTests(unittest.TestCase):
         with mock.patch.dict(os.environ, {"H3MAX_COMFY_ARGS": '["--cpu", "--lowvram"]'}):
             self.assertEqual(module.extra_arguments(), ["--cpu", "--lowvram"])
 
-    def test_restart_preserves_user_workflow_and_image_model_directory(self):
+    def test_start_preserves_image_model_directory_and_selects_workspace_models(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder).resolve()
             comfy, package, root = directory / "comfy", directory / "package", directory / "volume"
@@ -34,13 +35,6 @@ class StartTests(unittest.TestCase):
             (comfy / "models/placeholder").write_text("from image")
             (package / "workflows").mkdir(parents=True)
             (package / "workflows/test.json").write_text("original")
-            # Windows without Developer Mode cannot create directory symlinks.
-            probe = directory / "link-probe"
-            try:
-                probe.symlink_to(comfy, target_is_directory=True)
-                probe.unlink()
-            except OSError as exc:
-                self.skipTest(f"Directory symlinks unavailable: {exc}")
             env = {"H3MAX_ROOT": str(root), "H3MAX_DOWNLOAD_MODELS": "0", "H3MAX_COMFY_ARGS": "[]"}
             with mock.patch.object(module, "COMFY", comfy), mock.patch.object(module, "PACKAGE", package):
                 with mock.patch.dict(os.environ, env), mock.patch.object(module.os, "chdir"), mock.patch.object(module.os, "execv") as execute:
@@ -49,8 +43,10 @@ class StartTests(unittest.TestCase):
                     user_workflow.write_text("user edit")
                     module.main()
                     self.assertEqual(user_workflow.read_text(), "user edit")
-                    self.assertEqual((comfy / "models").resolve(), root / "models")
-                    self.assertEqual((comfy / "models.from-image/placeholder").read_text(), "from image")
+                    self.assertEqual((comfy / "models/placeholder").read_text(), "from image")
+                    self.assertFalse((comfy / "models.from-image").exists())
+                    self.assertIn("--models-directory", execute.call_args.args[1])
+                    self.assertIn(str(root / "models"), execute.call_args.args[1])
                     self.assertIn(str(root / "output"), execute.call_args.args[1])
 
 

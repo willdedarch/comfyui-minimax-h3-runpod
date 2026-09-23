@@ -3,10 +3,8 @@
   "stage": "integrated_candidate",
   "entrypoint": "/h3max",
   "tests_run": 110,
-  "passed": 109,
-  "skipped": [
-    "Windows does not permit directory symlinks in this session; Linux CI covers the startup link."
-  ],
+  "passed": 110,
+  "skipped": [],
   "browser_preview_verified": true,
   "browser_prepare_with_refine_verified": true,
   "browser_rendered_dimensions_and_duration_verified": true,

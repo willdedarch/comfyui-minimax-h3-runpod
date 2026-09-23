@@ -116,8 +116,10 @@ def main():
                             raise TimeoutError(f'CPU boot did not become ready; see {log_path}')
                         time.sleep(2)
                 report['cpu_boot_verified'] = True
-                if Path('/opt/ComfyUI/models').resolve() != Path('/workspace/h3max/models'):
-                    raise RuntimeError('Startup did not connect the persistent models directory')
+                command = Path(f'/proc/{process.pid}/cmdline').read_bytes().split(b'\0')
+                if (b'--models-directory' not in command or
+                    command[command.index(b'--models-directory') + 1] != b'/workspace/h3max/models'):
+                    raise RuntimeError('Startup did not select the configured models directory')
                 installed = Path('/workspace/h3max/user/default/workflows/H3_MAX')
                 for workflow in (PACKAGE / 'workflows').glob('*.json'):
                     if not (installed / workflow.name).is_file():
