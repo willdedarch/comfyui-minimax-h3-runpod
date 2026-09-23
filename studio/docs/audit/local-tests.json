@@ -1,0 +1,18 @@
+{
+  "revision": "complete-inventory-v2",
+  "python": "3.11.9",
+  "platform": "win32",
+  "tests_run": 34,
+  "passed": 33,
+  "failed": 0,
+  "errors": 0,
+  "skipped": [
+    {
+      "test": "test_restart_preserves_user_workflow_and_image_model_directory (test_start.StartTests.test_restart_preserves_user_workflow_and_image_model_directory)",
+      "reason": "Directory symlinks unavailable: [WinError 1314] O cliente n\u00e3o tem o privil\u00e9gio necess\u00e1rio: 'C:\\\\Users\\\\will\\\\AppData\\\\Local\\\\Temp\\\\tmp4sx8g_m6\\\\comfy' -> 'C:\\\\Users\\\\will\\\\AppData\\\\Local\\\\Temp\\\\tmp4sx8g_m6\\\\link-probe'"
+    }
+  ],
+  "docker_build_executed": false,
+  "gpu_render_executed": false,
+  "quality_comparison_executed": false
+}

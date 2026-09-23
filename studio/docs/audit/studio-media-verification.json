@@ -1,0 +1,129 @@
+{
+  "verified_at_utc": "2026-09-23T15:21:23.710913+00:00",
+  "environment": "Windows local CPU; FFmpeg tooling, no ComfyUI/GPU inference",
+  "ffmpeg_version": "ffmpeg version 9.0.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "adapter_sha256": "fc3635859241e069b00e5c5b3cb24ecb122342c2166ebf75ce6eebe9a2d1ce14",
+  "normalization_cases": [
+    {
+      "case": "variable_frame_rate_with_audio",
+      "source": "synthetic testsrc2 640x360, selected frames from 30fps; synthetic 440Hz sine, 3s; H264/AAC fixture",
+      "source_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "315/22",
+            "nb_read_frames": "42"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "nb_read_frames": "141"
+          }
+        ],
+        "format": {
+          "duration": "3.000000"
+        }
+      },
+      "normalized_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "ffv1",
+            "codec_type": "video",
+            "width": 640,
+            "height": 352,
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "nb_read_frames": "70"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "32000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "nb_read_frames": "142"
+          }
+        ],
+        "format": {
+          "duration": "3.001000"
+        }
+      },
+      "source_frame_intervals_seconds": [
+        0.03333,
+        0.06667,
+        0.1
+      ],
+      "normalized_frame_intervals_seconds": [
+        0.041,
+        0.042
+      ],
+      "passed": true
+    },
+    {
+      "case": "silent_1080p",
+      "source": "synthetic uniform blue, 1920x1080 at30fps, 2s; H264 fixture without audio",
+      "source_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "nb_read_frames": "60"
+          }
+        ],
+        "format": {
+          "duration": "2.000000"
+        }
+      },
+      "normalized_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "ffv1",
+            "codec_type": "video",
+            "width": 1312,
+            "height": 736,
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "nb_read_frames": "48"
+          }
+        ],
+        "format": {
+          "duration": "2.000000"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "unit_tests": {
+    "file": "tests/test_studio_integration.py",
+    "command": "py -3.11 -m unittest discover -s tests -p test_studio_integration.py -v",
+    "passed": 10,
+    "covers": "path/preflight rejection; duration/fps limits; bounded normalization; silent soundtrack; paired video/audio grid trimming with mocked pinned VideoFromFile interface"
+  },
+  "limits": [
+    "Real tests cover FFmpeg normalization only; VideoFromFile tensor decoding and H3 inference were not executed.",
+    "5+17k video/audio tail trimming was checked with mocked decoder results, not an actual ComfyUI runtime.",
+    "Synthetic normalization validates mechanics, not perceptual H3 quality."
+  ],
+  "temporary_media_preserved": false
+}

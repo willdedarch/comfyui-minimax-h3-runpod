@@ -1,0 +1,15 @@
+.env
+.env.*
+!env.example
+__pycache__/
+*.pyc
+*.zip
+models/
+input/
+output/
+credentials/
+*.pem
+*.key
+build-artifacts/
+benchmark-runs/
+.venv/

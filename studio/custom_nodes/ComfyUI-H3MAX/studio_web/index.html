@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#171916">
+  <title>H3 Studio — Criar vídeo</title>
+  <link rel="stylesheet" href="/h3max/studio.css">
+  <script defer src="/h3max/studio.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#scene-prompt">Ir para a descrição da cena</a>
+  <header class="app-header">
+    <a class="wordmark" href="/h3max/" aria-label="H3 Studio, início"><span class="brand-symbol">H<span>3</span></span><span>STUDIO</span></a>
+    <span class="header-divider" aria-hidden="true"></span><span class="header-section">Criar vídeo</span>
+    <div class="connection" id="connection"><span class="status-dot" aria-hidden="true"></span><span id="connection-label">Verificando ambiente</span></div>
+  </header>
+  <div class="environment-banner" id="environment-banner" hidden role="status"></div>
+  <main class="workspace">
+    <form class="composer" id="creation-form">
+      <div class="page-heading"><span class="eyebrow">SUA CENA, EM UM SÓ LUGAR</span><h1>Crie o próximo plano.</h1><p>Descreva o que acontece. Escolha os ajustes. Gere aqui.</p></div>
+      <section class="form-section scene-section" aria-labelledby="scene-title">
+        <div class="section-heading"><h2 id="scene-title"><span class="step">01</span> A cena</h2><span class="optional">Obrigatório</span></div>
+        <label class="sr-only" for="scene-prompt">Descreva a cena</label>
+        <textarea id="scene-prompt" name="prompt" rows="5" maxlength="12000" required placeholder="Quem está na cena? O que faz, em qual ordem? Descreva também o ambiente, a câmera e o som."></textarea>
+        <div class="prompt-footer"><span>Ações claras e em sequência ajudam a orientar o movimento.</span><span id="prompt-count">0 / 12.000</span></div>
+        <fieldset class="scene-fieldset"><legend>O que mais importa nesta cena?</legend><div class="scene-options">
+          <label><input type="radio" name="scene" value="natural" checked><span>Movimento natural</span></label>
+          <label><input type="radio" name="scene" value="action"><span>Ação corporal</span></label>
+          <label><input type="radio" name="scene" value="objects"><span>Objetos e líquidos</span></label>
+          <label><input type="radio" name="scene" value="weapon"><span>Ação com arma</span></label>
+        </div></fieldset><p class="field-note scene-note" id="scene-note">Prioriza movimentos humanos naturais quando o ajuste de movimento está ligado.</p>
+      </section>
+      <section class="form-section" aria-labelledby="images-title">
+        <div class="section-heading"><h2 id="images-title"><span class="step">02</span> Imagens e referências</h2><span class="optional">Opcional</span></div>
+        <div class="frames-grid">
+          <div class="media-slot" id="first-frame-slot"><label class="upload-target" for="first-frame"><span class="upload-icon" aria-hidden="true">＋</span><strong>Imagem inicial</strong><span>Define o começo do vídeo</span><input id="first-frame" type="file" accept="image/png,image/jpeg,image/webp" data-media="first_frame"></label><div class="media-list" id="first-frame-list"></div></div>
+          <div class="media-slot" id="last-frame-slot"><label class="upload-target" for="last-frame"><span class="upload-icon" aria-hidden="true">＋</span><strong>Imagem final</strong><span>Orienta o último quadro</span><input id="last-frame" type="file" accept="image/png,image/jpeg,image/webp" data-media="last_frame"></label><div class="media-list" id="last-frame-list"></div></div>
+        </div>
+        <details class="references-details" id="references-details"><summary>Usar referências de personagem, objeto ou estilo <span>Até 9 imagens</span></summary><div class="reference-content">
+          <p class="field-note">Referências orientam o conteúdo. Imagens inicial e final definem quadros. Use um desses modos por vez; o modelo é escolhido automaticamente.</p>
+          <label class="reference-upload" for="reference-images"><span aria-hidden="true">＋</span> Adicionar imagens de referência<input id="reference-images" type="file" accept="image/png,image/jpeg,image/webp" multiple data-media="references"></label><div class="media-list reference-list" id="references-list"></div>
+          <div class="extra-references" id="extra-references" hidden>
+            <div id="video-reference-group" hidden><label class="reference-upload" for="reference-videos"><span aria-hidden="true">＋</span> Referências de vídeo <small>Até 3</small><input id="reference-videos" type="file" accept="video/mp4,video/webm,video/quicktime,.mkv" multiple data-media="video_references"></label><p class="field-note feature-reason" id="video-reference-reason" hidden></p><div class="media-list" id="video-references-list"></div></div>
+            <div id="audio-reference-group" hidden><label class="reference-upload" for="reference-audio"><span aria-hidden="true">＋</span> Referências de áudio <small>Até 3</small><input id="reference-audio" type="file" accept="audio/wav,audio/mpeg,audio/flac,audio/ogg,audio/mp4,.aac,.opus" multiple data-media="audio_references"></label><p class="field-note feature-reason" id="audio-reference-reason" hidden></p><div class="media-list" id="audio-references-list"></div></div>
+          </div>
+          <p class="field-note" id="reference-media-note" hidden>Até 12 referências ao todo. Vídeos e áudios: 2–15 s por arquivo, até 15 s somados por tipo e 256 MB por arquivo. O vídeo de referência precisa caber na duração da cena; áudio deve acompanhar uma imagem ou um vídeo.</p>
+          <p class="field-note reference-label-note" id="reference-label-note" hidden></p>
+        </div></details><p class="inline-warning" id="media-warning" hidden role="status"></p>
+      </section>
+      <section class="form-section" aria-labelledby="adjustments-title">
+        <div class="section-heading"><h2 id="adjustments-title"><span class="step">03</span> Ajustes do vídeo</h2><span class="optional">Ligue o que precisa</span></div>
+        <div class="camera-controls"><div class="camera-main-controls"><div><label for="camera">Câmera</label><select id="camera"><option value="auto">Conforme a descrição</option><option value="locked">Fixa</option><option value="push_in">Aproxima</option><option value="pull_out">Afasta</option><option value="tracking">Acompanha</option><option value="pan_left">Pan para a esquerda</option><option value="pan_right">Pan para a direita</option><option value="orbit">Órbita</option></select></div><div><label for="framing">Enquadramento da cena</label><select id="framing"><option value="auto">Seguir descrição</option><option value="wide">Plano aberto</option><option value="medium">Plano médio</option><option value="closeup">Close</option></select></div></div><div class="camera-detail-controls" id="camera-detail-controls" hidden><div><label for="camera-speed">Velocidade</label><select id="camera-speed"><option value="slow">Lenta</option><option value="normal">Normal</option><option value="fast">Rápida</option></select></div><div><label for="camera-amount">Amplitude</label><select id="camera-amount"><option value="subtle">Sutil</option><option value="medium">Média</option><option value="wide">Ampla</option></select></div></div><p class="field-note">Orienta a câmera pela descrição que o modelo interpreta; não define uma trajetória 3D precisa.</p></div>
+        <div class="toggle-list">
+          <label class="toggle-row" data-feature="motion"><span class="toggle-copy"><strong>Ajustar movimento</strong><span class="toggle-description">Aplica a receita do tipo de cena escolhido.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="motion" checked><span class="switch" aria-hidden="true"></span></label>
+          <label class="toggle-row" data-feature="people_realism"><span class="toggle-copy"><strong>Realismo de pessoas</strong><span class="toggle-description">Ajusta aparência, pele e detalhes humanos.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="people_realism"><span class="switch" aria-hidden="true"></span></label>
+          <label class="toggle-row" data-feature="camera_motion"><span class="toggle-copy"><strong>Movimento de câmera</strong><span class="toggle-description">Reforça a linguagem e o movimento cinematográficos.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="camera_motion"><span class="switch" aria-hidden="true"></span></label>
+          <label class="toggle-row" data-feature="refine"><span class="toggle-copy"><strong>Mais definição</strong><span class="toggle-description">Amplia e refina em uma segunda passagem. Leva mais tempo.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="refine"><span class="switch" aria-hidden="true"></span></label>
+          <label class="toggle-row" data-feature="temporal"><span class="toggle-copy"><strong>Refinar continuidade <span class="experimental">Experimental</span></strong><span class="toggle-description">Reprocessa mudanças bruscas entre quadros. Leva mais tempo.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="temporal"><span class="switch" aria-hidden="true"></span></label>
+          <label class="toggle-row" data-feature="director"><span class="toggle-copy"><strong>Assistente de direção</strong><span class="toggle-description">Organiza sua descrição antes da geração.</span><span class="feature-reason" hidden></span></span><input type="checkbox" id="director"><span class="switch" aria-hidden="true"></span></label>
+        </div>
+      </section>
+      <section class="form-section output-section" aria-labelledby="output-title">
+        <div class="section-heading"><h2 id="output-title"><span class="step">04</span> Formato de saída</h2></div>
+        <div class="output-controls"><fieldset><legend>Enquadramento</legend><div class="aspect-options">
+          <label><input type="radio" name="aspect" value="16:9" checked><span><i class="aspect-icon landscape" aria-hidden="true"></i>16:9</span></label>
+          <label><input type="radio" name="aspect" value="9:16"><span><i class="aspect-icon portrait" aria-hidden="true"></i>9:16</span></label>
+          <label><input type="radio" name="aspect" value="1:1"><span><i class="aspect-icon square" aria-hidden="true"></i>1:1</span></label>
+        </div></fieldset><div class="duration-control"><label for="duration">Duração aproximada</label><select id="duration"><option value="5">5 segundos</option><option value="10">10 segundos</option></select></div></div>
+        <label class="toggle-row output-audio-control"><span class="toggle-copy"><strong>Áudio no vídeo</strong><span class="toggle-description">Inclui o som gerado no arquivo final. Desligue para exportar sem faixa de áudio.</span></span><input type="checkbox" id="output-audio" checked><span class="switch" aria-hidden="true"></span></label>
+        <details class="advanced-details"><summary>Modelo e repetição do resultado</summary><div class="advanced-fields"><div><label for="model">Modelo</label><select id="model"><option value="auto">Automático · recomendado</option><option value="fl2va">H3 · texto e quadros</option><option value="ref2va">H3 · referências</option><option value="hybrid">H3 · híbrido</option></select><p class="field-note" id="model-explanation">O Studio escolhe o modelo a partir das imagens e referências.</p></div><div><label for="seed">Semente</label><input id="seed" type="number" min="0" max="9007199254740991" step="1" placeholder="Automática"><p class="field-note">Guarde o mesmo número para comparar ajustes da mesma cena.</p></div></div></details>
+        <details class="validation-details"><summary>Recursos em validação</summary><p>Controle de pose, edição e continuação de vídeos e LTX precisam de integração e validação próprias. Ainda não fazem parte desta tela. Os ajustes disponíveis também precisam de avaliação de qualidade na GPU; não garantem física correta.</p></details>
+      </section>
+      <div class="form-error" id="form-error" hidden role="alert"></div>
+      <div class="generate-bar"><p id="submit-note">Verificando se o ambiente está pronto para gerar.</p><button class="primary-button" id="generate-button" type="submit" disabled><span id="generate-label">Gerar vídeo</span><span aria-hidden="true">↗</span></button></div>
+    </form>
+    <aside class="screen-column" aria-label="Resultado e acompanhamento">
+      <div class="monitor-card"><div class="monitor-header"><span><i class="live-dot" aria-hidden="true"></i> MONITOR</span><span id="monitor-format">16:9 · ~5 s · áudio</span></div>
+        <div class="monitor-screen" id="monitor-screen"><div class="empty-screen" id="empty-screen"><div class="frame-mark" aria-hidden="true"><span></span></div><strong>O seu vídeo aparece aqui.</strong><p>Do primeiro quadro ao resultado final,<br>sem trocar de painel.</p></div><video id="result-video" controls playsinline preload="metadata" hidden></video></div>
+        <div class="monitor-caption"><span id="monitor-caption">Aguardando sua cena</span><a id="download-video" class="download-link" hidden download>Baixar MP4 <span aria-hidden="true">↓</span></a></div>
+        <div class="result-versions" id="result-versions" hidden></div>
+      </div>
+      <div class="session-status" id="session-status" role="status" aria-live="polite"><span class="status-indicator" aria-hidden="true"></span><div><strong id="session-title">Tudo começa pela cena.</strong><p id="session-detail">O modelo e os ajustes usados ficam registrados junto ao resultado.</p><button type="button" class="text-button cancel-button" id="cancel-job" hidden>Cancelar esta geração</button></div></div>
+      <div class="recipe-card"><div class="recipe-heading"><h2>Este vídeo</h2><span class="recipe-label" id="recipe-label">Configuração</span></div><dl class="recipe-values"><div><dt>Modelo</dt><dd id="recipe-model">H3 · texto e quadros</dd></div><div><dt>Movimento</dt><dd id="recipe-scene">Natural</dd></div><div><dt>Saída</dt><dd id="recipe-output">16:9 · ~5 segundos</dd></div><div><dt>Resolução</dt><dd id="recipe-resolution">1280 × 736</dd></div></dl><div class="recipe-tags" id="recipe-tags"><span>Ajuste de movimento</span></div><p class="recipe-note" id="recipe-note">A escolha automática acompanha suas referências.</p><button type="button" class="reuse-seed" id="reuse-seed" hidden>Reutilizar a semente deste resultado</button><details class="prepared-details" id="prepared-details" hidden><summary>Sobre os ajustes aplicados</summary><ul id="prepared-notes"></ul></details></div>
+      <div class="recipe-tools" aria-label="Guardar ou abrir configuração"><button type="button" class="secondary-button" id="export-recipe">Salvar receita</button><button type="button" class="secondary-button" id="import-recipe">Abrir receita</button><input class="sr-only" id="recipe-file" type="file" accept="application/json,.json"><p>Guarda a cena e todos os ajustes. Mídias continuam no ambiente onde foram enviadas.</p></div>
+      <section class="library-card" aria-labelledby="library-title"><div class="library-heading"><h2 id="library-title">Seus vídeos</h2><button type="button" class="text-button" id="refresh-library" aria-label="Atualizar seus vídeos">Atualizar</button></div><p class="library-note">Histórico deste ambiente, com a receita de cada geração.</p><p class="library-empty" id="library-empty">Carregando histórico…</p><div class="job-list" id="job-list"></div></section>
+      <details class="inspector-panel" id="graph-inspector"><summary>Etapas e nós <span>Inspeção opcional</span></summary><p class="field-note">Veja como os componentes se conectam e selecione um nó para consultar suas entradas.</p><div class="inspector-actions"><button type="button" class="secondary-button" id="inspect-current">Ver configuração atual</button><button type="button" class="secondary-button" id="inspect-job" disabled>Ver geração selecionada</button></div><p class="inspector-status" id="inspector-status" role="status">O grafo aparece aqui quando você escolher uma configuração ou geração.</p><div class="graph-viewport" id="graph-viewport" hidden tabindex="0" role="region" aria-label="Grafo de nós; role para explorar e selecione um nó"></div><div class="node-inspection" id="node-inspection" hidden><h3 id="node-title"></h3><pre id="node-inputs"></pre></div><details class="graph-models" id="graph-models" hidden><summary>Componentes usados</summary><ul id="graph-model-list"></ul></details><div class="inspector-actions"><button type="button" class="text-button" id="download-graph" hidden>Baixar grafo JSON</button><a class="text-button" id="open-comfy" href="/?comfy=1" target="_blank" rel="noopener" hidden>Abrir ComfyUI avançado ↗</a><span class="field-note" id="comfy-preview-note" hidden>O editor ComfyUI estará disponível no ambiente com GPU.</span></div></details>
+      <p class="workspace-footnote">MINIMAX H3 <span>·</span> IMAGEM + MOVIMENTO + SOM</p>
+    </aside>
+  </main>
+  <noscript><p class="noscript">Ative o JavaScript para usar o H3 Studio.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,1194 @@
+{
+  "date": "2026-09-23",
+  "scope": "Snapshot before availability correction, from pinned code. No GPU inference.",
+  "counts": {
+    "models_total": 24,
+    "models_integrated": 12,
+    "external_packs_total": 7,
+    "external_packs_used": 4
+  },
+  "inspected_hashes": {
+    "custom_nodes/ComfyUI-H3MAX/studio_recipe.py": "cf6ea60d990a494b42a4924681138eb9211c49a56281ffba77d0fb8a96acdaef",
+    "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js": "4e964448656047764bda3e9ab58d16fe9008f122afd7241341525d9a97fb57af",
+    "custom_nodes/ComfyUI-H3MAX/studio_web/index.html": "430a496521cb57e6140cd1513b3d3e5c549e458412b1b5b8023980a9b17cd32a",
+    "custom_nodes/ComfyUI-H3MAX/studio_routes.py": "6de32be1229133fc3ca17d5a3c89605b85af5f5f32e791a246a23994d3150eb5"
+  },
+  "models": [
+    {
+      "file": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "core",
+      "size_bytes": 20970379616,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 20,
+          "search": "minimax_h3_fl2va_pruned_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "core",
+      "size_bytes": 20970379616,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 21,
+          "search": "minimax_h3_ref2va_pruned_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "core",
+      "size_bytes": 15687142551,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 22,
+          "search": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "core",
+      "size_bytes": 2811065184,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 23,
+          "search": "minimax_h3_video_vae_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "vae/minimax_h3_audio_vae_fp32.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "core",
+      "size_bytes": 605254808,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 24,
+          "search": "minimax_h3_audio_vae_fp32.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "model_patches/minimax_h3_fun_controlnet_union_pruned_int8_convrot.safetensors",
+      "groups": [
+        "control"
+      ],
+      "purpose": "optional_control_v1",
+      "size_bytes": 2296635360,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 80,
+          "search": "model_patches/minimax_h3_fun_controlnet_union_pruned_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+      "groups": [
+        "encoder_int8"
+      ],
+      "purpose": "optional_encoder_comparison",
+      "size_bytes": 27141342152,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 93,
+          "search": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors",
+      "groups": [
+        "full_base"
+      ],
+      "purpose": "optional_full_base",
+      "size_bytes": 34038892334,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 106,
+          "search": "diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "Motion_Repair.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "preset_natural",
+      "size_bytes": 155110272,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 25,
+          "search": "Motion_Repair.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "wushu_spatial_physics_clean_3000_pruned.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "preset_objects_experimental",
+      "size_bytes": 155109672,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 28,
+          "search": "wushu_spatial_physics_clean_3000_pruned.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "h3-realism-people-t2v-i2v-r2v.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "optional_people_appearance",
+      "size_bytes": 131229656,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 29,
+          "search": "h3-realism-people-t2v-i2v-r2v.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "camera_motion_h3_lora_v1_3000_pruned.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "optional_camera",
+      "size_bytes": 155109680,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 30,
+          "search": "camera_motion_h3_lora_v1_3000_pruned.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "H3_Combat_V2.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "preset_body_action",
+      "size_bytes": 155110280,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 26,
+          "search": "H3_Combat_V2.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "Bunny_weapon_combatV1.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "preset_weapon_action_standalone",
+      "size_bytes": 155110272,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 27,
+          "search": "Bunny_weapon_combatV1.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "better_motion_h3_lora_v1_500.safetensors",
+      "groups": [
+        "experimental_motion"
+      ],
+      "purpose": "experimental_alternative_t2v_i2v",
+      "size_bytes": 310168816,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 197,
+          "search": "better_motion_h3_lora_v1_500.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors",
+      "groups": [
+        "singularity"
+      ],
+      "purpose": "experimental_alternative_checkpoint",
+      "size_bytes": 20967647456,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 210,
+          "search": "Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "minimax_h3_latent_upscaler_3d_conv_v1/minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+      "groups": [
+        "h3"
+      ],
+      "purpose": "finish",
+      "size_bytes": 690592672,
+      "studio_integrated": true,
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 31,
+          "search": "minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "checkpoints/sdpose_wholebody_fp16.safetensors",
+      "groups": [
+        "control"
+      ],
+      "purpose": "optional_control_v1",
+      "size_bytes": 1916645792,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 236,
+          "search": "checkpoints/sdpose_wholebody_fp16.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "diffusion_models/rt_detr_v4-x-hgnet_fp16.safetensors",
+      "groups": [
+        "control"
+      ],
+      "purpose": "optional_control_v1",
+      "size_bytes": 123968978,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 249,
+          "search": "diffusion_models/rt_detr_v4-x-hgnet_fp16.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "groups": [
+        "ltx25"
+      ],
+      "purpose": "optional_independent_ltx25",
+      "size_bytes": 21504034224,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 262,
+          "search": "diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "groups": [
+        "ltx25"
+      ],
+      "purpose": "optional_independent_ltx25",
+      "size_bytes": 995778752,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 276,
+          "search": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "groups": [
+        "ltx25"
+      ],
+      "purpose": "optional_independent_ltx25",
+      "size_bytes": 15372969374,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 290,
+          "search": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "groups": [
+        "ltx25"
+      ],
+      "purpose": "optional_independent_ltx25",
+      "size_bytes": 364866540,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 304,
+          "search": "vae/ltx-2.5-audio-vae-bf16.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    },
+    {
+      "file": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "groups": [
+        "ltx25"
+      ],
+      "purpose": "optional_independent_ltx25",
+      "size_bytes": 1472223346,
+      "studio_integrated": false,
+      "evidence": [
+        {
+          "file": "models.lock.json",
+          "line": 318,
+          "search": "vae/ltx-2.5-video-vae-bf16.safetensors"
+        }
+      ],
+      "gpu_verified": false
+    }
+  ],
+  "external_packs": [
+    {
+      "repository": "https://github.com/scottmudge/ComfyUI_MinimaxH3HybridLoader",
+      "commit": "a44c69b02242e41fbd01e22abe2a492adc853038",
+      "directory": "ComfyUI_MinimaxH3HybridLoader",
+      "studio_uses": [
+        "MiniMaxH3HybridLoader"
+      ],
+      "integrated": true,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 16,
+          "search": "ComfyUI_MinimaxH3HybridLoader"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/ruashots/ComfyUI-OpenH3-IR",
+      "commit": "8660988b033d427f346e72fdbcf2d45ede48edbe",
+      "directory": "ComfyUI-OpenH3-IR",
+      "studio_uses": [
+        "indirect H3MAXDirectorText, external LLM"
+      ],
+      "integrated": true,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 21,
+          "search": "ComfyUI-OpenH3-IR"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/kijai/ComfyUI-KJNodes",
+      "commit": "d3cfe21625e5170126ce06fbfcfe1d88108688c3",
+      "directory": "ComfyUI-KJNodes",
+      "studio_uses": [],
+      "integrated": false,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 26,
+          "search": "ComfyUI-KJNodes"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/matlowai/ComfyUI-MAINodes",
+      "commit": "f4868b4a08e8a504ce86db54a17961d399ffa2bc",
+      "directory": "ComfyUI-MAINodes",
+      "studio_uses": [
+        "H3JerkOracle",
+        "H3TimeSmear",
+        "H3AudioSmear",
+        "H3V2VInit",
+        "H3InjectSchedule",
+        "H3ExactRecover"
+      ],
+      "integrated": true,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 31,
+          "search": "ComfyUI-MAINodes"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/xmarre/Comfyui_Minimax_h3_latent_Upscaler-Plus",
+      "commit": "620165a311de9b28a36260219fb5cd370a304e3c",
+      "directory": "Comfyui_Minimax_h3_latent_Upscaler",
+      "studio_uses": [
+        "MinimaxH3LatentUpscaler3DRefineHandoff"
+      ],
+      "integrated": true,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 36,
+          "search": "Comfyui_Minimax_h3_latent_Upscaler"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/seitanism/ComfyUI-H3-Motion-Context-MultiRef",
+      "commit": "361624fb406b63eb6694442eac6c895fc1533a70",
+      "directory": "ComfyUI-H3-Motion-Context-MultiRef",
+      "studio_uses": [],
+      "integrated": false,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 41,
+          "search": "ComfyUI-H3-Motion-Context-MultiRef"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite",
+      "commit": "4d907bee61e92c2e65af3bd6383a4e4d356126d1",
+      "directory": "ComfyUI-VideoHelperSuite",
+      "studio_uses": [],
+      "integrated": false,
+      "evidence": [
+        {
+          "file": "sources.lock.json",
+          "line": 46,
+          "search": "ComfyUI-VideoHelperSuite"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "availability",
+      "priority": 0,
+      "status": "confirmed",
+      "title": "Controles disponíveis sem conferir seus pesos/nós",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_routes.py",
+          "search": "def features",
+          "line_status": "Historical snapshot search; expression was changed by the recorded remediation."
+        }
+      ],
+      "recommended_action": "Corrigir disponibilidade por recurso, modelo e perfil; REF2VA pode funcionar sem FL2VA.",
+      "current_status": "implemented_local_checks_gpu_pending"
+    },
+    {
+      "id": "pose",
+      "priority": 1,
+      "status": "not integrated",
+      "title": "Guiar pose/ControlNet",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/index.html",
+          "line": 72,
+          "search": "Controle de pose"
+        }
+      ],
+      "recommended_action": "Conectar receita oficial normal e três pesos control; validar GPU.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "edit_existing",
+      "priority": 1,
+      "status": "not integrated",
+      "title": "Editar vídeo V2V",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 54,
+          "search": "FIELDS ="
+        }
+      ],
+      "recommended_action": "Referência de vídeo não edita o vídeo; integrar preservação de movimento/áudio.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "continue_video",
+      "priority": 1,
+      "status": "not integrated",
+      "title": "Continuação AV e ponte de clipes",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/index.html",
+          "line": 72,
+          "search": "continuação de vídeos"
+        }
+      ],
+      "recommended_action": "Integrar os nós MotionContext; resolver pesos Turbo ausentes ou validar geração normal.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "keyframes",
+      "priority": 1,
+      "status": "not integrated",
+      "title": "Quadros intermediários",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 130,
+          "search": "for key in (\"first_frame\", \"last_frame\")"
+        }
+      ],
+      "recommended_action": "Integrar soft keyframes com instantes alinhados, usando os modelos já previstos.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "reference_roles",
+      "priority": 1,
+      "status": "confirmed",
+      "title": "Referências sem rótulos nem papel claro",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+          "search": "name.textContent = item.file.name",
+          "line_status": "Historical snapshot search; expression was changed by the recorded remediation."
+        }
+      ],
+      "recommended_action": "Exibir Picture/Video/Audio na ordem do core, permitir papel; áudio de vídeos também consome números Audio.",
+      "current_status": "labels implemented; role selector not integrated"
+    },
+    {
+      "id": "history",
+      "priority": 1,
+      "status": "confirmed",
+      "title": "Biblioteca e repetição completa ausentes",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+          "line": 457,
+          "search": "storedRemove(activeJobKey)"
+        }
+      ],
+      "recommended_action": "Persistir receita, mídia e resultado; restauração completa, além de repetir seed.",
+      "current_status": "implemented_local_checks_gpu_pending"
+    },
+    {
+      "id": "cancel",
+      "priority": 1,
+      "status": "confirmed",
+      "title": "Cancelar e recuperar job removido",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+          "line": 469,
+          "search": "async function pollJob"
+        }
+      ],
+      "recommended_action": "Cancelar só a geração própria; tratar remoção da fila sem espera infinita.",
+      "current_status": "implemented_local_checks_gpu_pending"
+    },
+    {
+      "id": "progress",
+      "priority": 2,
+      "status": "confirmed",
+      "title": "Progresso sem estágios ou passos reais",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+          "line": 478,
+          "search": "setStatus('Gerando seu vídeo.'"
+        }
+      ],
+      "recommended_action": "Integrar eventos e estado dos downloads; sem estimativas inventadas.",
+      "current_status": "confirmed"
+    },
+    {
+      "id": "baseline_compare",
+      "priority": 1,
+      "status": "confirmed",
+      "title": "Só final salvo, comparação base/refino ausente",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 288,
+          "search": "add(\"SaveVideo\""
+        }
+      ],
+      "recommended_action": "Preservar base e mostrar antes/depois ao usar temporal ou refine.",
+      "current_status": "implemented_local_checks_gpu_pending"
+    },
+    {
+      "id": "duration15",
+      "priority": 2,
+      "status": "deliberate subset",
+      "title": "Somente 5/10 segundos",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 18,
+          "search": "FRAMES ="
+        }
+      ],
+      "recommended_action": "Avaliar 362 frames (~15s) com orçamento de memória e GPU antes de habilitar.",
+      "current_status": "deliberate subset"
+    },
+    {
+      "id": "multimodal_director",
+      "priority": 2,
+      "status": "not integrated",
+      "title": "Diretor não lê referências",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 153,
+          "search": "if reference_count and values[\"director\"]"
+        }
+      ],
+      "recommended_action": "Integrar caminho multimodal próprio e endpoint adequado.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "alternatives",
+      "priority": 2,
+      "status": "not integrated",
+      "title": "Base completa, encoder INT8, Singularity e Better Motion ausentes",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 19,
+          "search": "MODELS = {"
+        }
+      ],
+      "recommended_action": "Expor alternativas apenas com receita compatível e benefício validado.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "ltx",
+      "priority": 2,
+      "status": "not integrated",
+      "title": "LTX 2.5 sem receita",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_web/index.html",
+          "line": 72,
+          "search": "LTX precisam"
+        }
+      ],
+      "recommended_action": "Motor separado com seus próprios pesos/receita; não filtro H3.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "turbo",
+      "priority": 2,
+      "status": "not integrated",
+      "title": "Turbo e receita rápida não conectados",
+      "evidence": [
+        {
+          "file": "docs/INVENTARIO_COMPLETO.md",
+          "line": 160,
+          "search": "Turbo, SageAttention"
+        }
+      ],
+      "recommended_action": "Faltam pesos Turbo; comparar em GPU antes de alterar padrão.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "official_hosted",
+      "priority": 3,
+      "status": "not integrated",
+      "title": "Context-IR e Regenerate-2K oficiais",
+      "evidence": [
+        {
+          "file": "docs/audit/studio-verification.json",
+          "line": 30,
+          "search": "official Context-IR"
+        }
+      ],
+      "recommended_action": "Não anunciar serviços hospedados como funções locais.",
+      "current_status": "not integrated"
+    },
+    {
+      "id": "negative_prompt",
+      "priority": 3,
+      "status": "not a supported-feature gap",
+      "title": "Negative prompt ausente",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 270,
+          "search": "add(\"BasicGuider\""
+        }
+      ],
+      "recommended_action": "Correto manter ausente no CFG efetivo 1, sem condicionamento negativo.",
+      "current_status": "not a supported-feature gap"
+    },
+    {
+      "id": "manual_parameters",
+      "priority": 3,
+      "status": "intentional simplification",
+      "title": "Sampler/FPS/forças técnicas ocultos",
+      "evidence": [
+        {
+          "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+          "line": 14,
+          "search": "FPS = 24"
+        }
+      ],
+      "recommended_action": "Preservar automação simples; campos técnicos não devem virar trabalho do usuário.",
+      "current_status": "intentional simplification"
+    }
+  ],
+  "present_features": [
+    "Single panel, auto FL2VA/REF2VA, hybrid option",
+    "First/last frames; 9 image/3 video/3 audio references, 12 total",
+    "Eligible combinations of temporal and refine",
+    "Motion/appearance/camera switches",
+    "Playback/download and active job recovery",
+    "Seed reuse and request validation"
+  ],
+  "gpu_inference_executed": false,
+  "quality_improvement_proven": false,
+  "seedance_parity_proven": false,
+  "remediations": [
+    {
+      "id": "availability",
+      "status": "implemented_and_locally_verified",
+      "files": [
+        "custom_nodes/ComfyUI-H3MAX/studio_routes.py",
+        "tests/test_studio_http.py"
+      ],
+      "contract": "models auto/fl2va/ref2va/hybrid; scenes natural/action/objects/weapon; features. Each state has available, reason, missing_models, missing_nodes. runtime_ready uses any installed engine + GPU. No inference/quality claims.",
+      "tests": {
+        "http_tests_passed": 10,
+        "integration_tests_passed": 10,
+        "runtime_dependencies": "simulated nodes, model files and CUDA status; real aiohttp",
+        "gpu_inference_executed": false
+      }
+    },
+    {
+      "id": "prepare_recipe",
+      "status": "extracted_without_semantic_change",
+      "public_async_function": "prepare_recipe(body, folder_paths)",
+      "purpose": "Shared compile, file validation and media-duration preflight before job submission."
+    },
+    {
+      "id": "baseline_compare",
+      "status": "implemented_and_locally_verified",
+      "files": [
+        "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+        "tests/test_studio_recipe.py"
+      ],
+      "behavior": "With refine and/or temporal: exactly two SaveVideo outputs ordered base then final; names end _base and _final. Otherwise one _final. Summary outputs identifies roles. Both use original audio; temporal and base export share one initial decode. No extra sampling pass.",
+      "tests": {
+        "recipe_tests_passed": 16,
+        "graph_switch_matrix_cases": 96,
+        "pinned_source_schema_cases": 348,
+        "node_contracts": 29,
+        "gpu_inference_executed": false
+      }
+    },
+    {
+      "id": "partial_outputs",
+      "status": "implemented_local_tests_reported_by_coordinator",
+      "detail": "Saved base outputs are collected for failed or interrupted histories; missing expected final output is not reported as success."
+    },
+    {
+      "id": "reference_labels",
+      "status": "implemented_source_verified",
+      "detail": "Actual video soundtrack metadata defines Audio numbering before standalone audio; metadata survives in saved summary."
+    }
+  ],
+  "current_audit": {
+    "date": "2026-09-23",
+    "stage": "After partial-output preservation and reference-label corrections; camera direction and graph viewer implementation in progress.",
+    "sha256": {
+      "custom_nodes/ComfyUI-H3MAX/studio_jobs.py": "dc731c5d0d1a3352526661adec89121b37029fe44b3034889c7d8996ddd89bc5",
+      "custom_nodes/ComfyUI-H3MAX/studio_media.py": "fc3635859241e069b00e5c5b3cb24ecb122342c2166ebf75ce6eebe9a2d1ce14",
+      "custom_nodes/ComfyUI-H3MAX/studio_recipe.py": "6a642707850ce3b86ca83a0c411af07f0da0069635b804bedb8a1575e4088118",
+      "custom_nodes/ComfyUI-H3MAX/studio_routes.py": "6d1f33f1f9bc24b2ee196b8b19c7b1d4f17b3d32ec48834940383bb6e8092c35",
+      "custom_nodes/ComfyUI-H3MAX/__init__.py": "8784905d2abfbacff9fb2be60b3f813905a93fc853b4dc33c644bc9ad2a99be9",
+      "custom_nodes/ComfyUI-H3MAX/studio_web/index.html": "4964ff7dcb3e867bda9245cf44e971863db5369f116ba3ab290c3d4130f3f0c1",
+      "custom_nodes/ComfyUI-H3MAX/studio_web/studio.css": "0163bea66acf4cc5085f4a18cd50ca6bd4ec46a03f3a15796f0bc42168041c63",
+      "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js": "0b655c215f5bc3239285586c5d4f7f9cba14df717b49d5ce36fc6a032d06ef7c"
+    },
+    "coverage_counts": {
+      "models_total": 24,
+      "models_integrated": 12,
+      "external_packs_total": 7,
+      "external_packs_used": 4
+    },
+    "implemented_local": [
+      {
+        "feature": "Availability per engine, feature and motion profile",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_routes.py",
+            "line": 21,
+            "search": "def runtime_capabilities"
+          }
+        ],
+        "tests": "test_studio_http.py: 10 passed"
+      },
+      {
+        "feature": "Durable job journal and complete recipe before GPU queue; survives browser close and server restart as record",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 238,
+            "search": "store.save(record)"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 264,
+            "search": "async def journal_lifecycle"
+          }
+        ],
+        "tests": "Coordinator reports 21 jobs tests plus graph inspection regression passed; real HTTP, simulated ComfyUI/GPU. Previous independent audit ran 18 tests before these additions."
+      },
+      {
+        "feature": "Cancel only the selected queued/running Studio job",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 160,
+            "search": "queue.interrupt_if_running(identifier)"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 493,
+            "search": "async function cancelJob"
+          }
+        ],
+        "tests": "Pending, running, completion race and unknown job cancellation tests passed"
+      },
+      {
+        "feature": "Library, watch/download, restore recipe and import/export JSON",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 543,
+            "search": "function applyRecipe"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 569,
+            "search": "function exportRecipe"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 580,
+            "search": "async function importRecipe"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 602,
+            "search": "function renderLibrary"
+          }
+        ],
+        "verification": "UI source inspected; browser acceptance tested by coordinator separately"
+      },
+      {
+        "feature": "Original/final comparison using one base generation and shared original audio",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_recipe.py",
+            "line": 290,
+            "search": "outputs = [\"base\", \"final\"]"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 443,
+            "search": "const label = stage === 'base'"
+          }
+        ],
+        "tests": "test_studio_recipe.py: 16 passed, including 96 graph cases and 348 source-schema cases"
+      },
+      {
+        "feature": "Partial outputs remain visible after a later pass fails or is cancelled; incomplete success is rejected",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 115,
+            "search": "updated[\"outputs\"] = saved_videos"
+          },
+          {
+            "file": "tests/test_studio_jobs.py",
+            "line": 124,
+            "search": "def test_failed_or_interrupted_second_pass_preserves_base_video"
+          },
+          {
+            "file": "tests/test_studio_jobs.py",
+            "line": 141,
+            "search": "def test_completed_history_requires_every_expected_video"
+          }
+        ],
+        "verification": "Code inspected; local test success reported by coordinator, no GPU execution"
+      },
+      {
+        "feature": "Native Picture/Video/Audio labels with video soundtrack numbering and persistent probe metadata",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 250,
+            "search": "function referenceTags"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_routes.py",
+            "line": 160,
+            "search": "result[\"summary\"][\"reference_media\"]"
+          },
+          {
+            "file": "tests/test_studio_jobs.py",
+            "line": 400,
+            "search": "async def test_probed_audio_metadata_is_ordered_and_persists_across_restart"
+          }
+        ],
+        "verification": "Code inspected; media existence determined by ffprobe. Unknown soundtrack metadata does not fabricate an Audio number."
+      },
+      {
+        "feature": "Saved graph read-only API without queueing or exposing runtime credentials",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 193,
+            "search": "async def get_graph"
+          },
+          {
+            "file": "tests/test_studio_jobs.py",
+            "line": 302,
+            "search": "async def test_graph_inspection_returns_saved_graph_without_queue_or_credentials"
+          }
+        ],
+        "verification": "Backend present, coordinator reports local regression passed; visual inspector remains in implementation."
+      }
+    ],
+    "needs_gpu": [
+      "Actual pinned image boot and model loading",
+      "Complete rendering for every enabled control and engine",
+      "VRAM, wall time, audio/video synchronization and reference fidelity",
+      "Visual comparison of human movement, action/contact and objects/liquids",
+      "Seedance comparison; no parity claim is justified"
+    ],
+    "not_integrated": [
+      "Pose/ControlNet",
+      "Intermediate custom keyframes and AV masks",
+      "Editing existing video / V2V motion transfer",
+      "AV continuation, bridge and music-video chaining",
+      "Multimodal director",
+      "INT8 encoder, full FL2VA, Singularity and Better Human Motion alternatives",
+      "LTX 2.5",
+      "Turbo recipes",
+      "Official hosted Context-IR and Regenerate-2K"
+    ],
+    "remaining_panel_gaps": [
+      {
+        "id": "reference_roles",
+        "priority": 1,
+        "finding": "Native Picture/Video/Audio labels are now shown with soundtrack-aware numbering. Per-reference role selection and automatic semantic description remain unimplemented; roles can be expressed in the prompt using those labels.",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 250,
+            "search": "function referenceTags"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 264,
+            "search": "function refreshReferenceLabels"
+          }
+        ],
+        "status": "labels implemented; role selector not integrated"
+      },
+      {
+        "id": "startup_progress",
+        "priority": 2,
+        "finding": "Initial downloads finish before the Studio server starts, so their progress is only available in Runpod logs. Runtime panel has queued/running states but no per-step or stage events.",
+        "evidence": [
+          {
+            "file": "scripts/start.py",
+            "line": 50,
+            "search": "subprocess.run"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 478,
+            "search": "if (job.status === 'running')"
+          }
+        ],
+        "status": "not integrated"
+      },
+      {
+        "id": "library_pagination",
+        "priority": 2,
+        "finding": "Library lists the latest 100 job records, with no pagination or search controls; older records remain on disk.",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 93,
+            "search": "def records(self, limit=100)"
+          },
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_jobs.py",
+            "line": 182,
+            "search": "for r in store.records()"
+          }
+        ],
+        "status": "not integrated"
+      },
+      {
+        "id": "recipe_portability",
+        "priority": 2,
+        "finding": "Exported recipes contain media paths, not the media itself. Reuse in the same persistent volume is supported; transferring to another volume needs corresponding media.",
+        "evidence": [
+          {
+            "file": "custom_nodes/ComfyUI-H3MAX/studio_web/studio.js",
+            "line": 576,
+            "search": "Imagens, vídeos e áudios permanecem no ambiente"
+          }
+        ],
+        "status": "explicit limitation"
+      }
+    ],
+    "gpu_inference_executed": false,
+    "quality_improvement_proven": false,
+    "seedance_parity_proven": false,
+    "in_progress": [],
+    "deployment_storage": {
+      "template_default": "300 GB host-local persistent storage at /workspace, plus 60 GB container disk",
+      "network_volume": "Optional replacement selected at Pod creation; no network volume has been reserved by generating the template.",
+      "evidence": [
+        {
+          "file": "scripts/prepare_template.py",
+          "line": 18,
+          "search": "'mounts': {'persistent': {'path': '/workspace', 'size': 300}}"
+        }
+      ],
+      "hf_token": "Empty runtime environment field, supplied by user in Runpod; never embedded in image."
+    },
+    "final_local_verification": {
+      "date": "2026-09-23",
+      "stage": "integrated_candidate",
+      "entrypoint": "/h3max",
+      "tests_run": 110,
+      "passed": 110,
+      "skipped": [],
+      "browser_preview_verified": true,
+      "browser_prepare_with_refine_verified": true,
+      "browser_rendered_dimensions_and_duration_verified": true,
+      "browser_errors_observed": [],
+      "generated_videos": 0,
+      "http_integration": "aiohttp real; ComfyUI and GPU dependencies simulated",
+      "reference_media_tests": "real FFmpeg on synthetic VFR/audio and silent1080p files; see studio-media-verification.json",
+      "source_schema_cases": 348,
+      "source_schema_node_contracts": 29,
+      "image_build_executed": false,
+      "actual_comfy_boot_executed": false,
+      "gpu_inference_executed": false,
+      "seedance_comparison_executed": false,
+      "remote_image_published": false,
+      "runpod_template_created": false,
+      "not_integrated": [
+        "multimodal director analysis",
+        "Pose/ControlNet",
+        "V2V editing and continuation",
+        "LTX-2.5",
+        "official Context-IR and Regenerate-2K"
+      ],
+      "compatibility": [
+        "first/last frames use FL2VA; references use Ref2VA",
+        "last frame excludes temporal repair",
+        "weapon motion profile excludes appearance/camera LoRAs",
+        "audio-only references rejected",
+        "only supported inputs accepted; no silent feature dropping"
+      ],
+      "browser_camera_controls_verified": true,
+      "browser_static_camera_guard_verified": true,
+      "browser_audio_export_control_verified": true,
+      "browser_real_graph_inspection_verified": true,
+      "browser_graph_node_inputs_verified": true,
+      "browser_horizontal_page_overflow": false,
+      "durable_job_lifecycle_tested": true,
+      "partial_output_recovery_tested": true,
+      "camera_prompt_controls_tested": true,
+      "silent_export_graphs_tested": true,
+      "hf_token_runtime_only_tested": true,
+      "exact_job_graph_endpoint_tested": true
+    },
+    "camera_and_graph": {
+      "status": "implemented and locally tested; GPU response remains unverified",
+      "camera": "Eight textual directions; speed, amplitude, framing; fixed camera rejects motion LoRA",
+      "audio": "Original and final exports can omit the audio track; internal AV conditioning remains when needed",
+      "graph": "Actual prepared or persisted job graph, connections, node inputs and used components; read-only inspection and API JSON export"
+    }
+  }
+}

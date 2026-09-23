@@ -1,0 +1,910 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "type": "H3MAXDirectorText",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        470,
+        420
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "title": "1 — Descreva a cena; diretor de texto opcional",
+      "properties": {
+        "Node name for S&R": "H3MAXDirectorText"
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "widgets_values": [
+        "Single continuous documentary shot, full body. An adult athlete in a plain gray T-shirt and dark pants stands on a dry concrete courtyard in soft daylight. The athlete takes three quick running steps, decelerates, turns 90 degrees, then settles into a balanced stance. The planted foot stays fixed during the turn. The pelvis and torso carry momentum; knees bend to absorb the stop. Natural anatomy, skin texture, fabric movement and subtle breathing. Camera stays at chest height, the ground remains visible, no cuts. Audio: footsteps on concrete and quiet outdoor ambience, no dialogue or music.",
+        false,
+        5.166666666666667,
+        "16:9",
+        123456
+      ]
+    },
+    {
+      "id": 2,
+      "type": "UNETLoader",
+      "pos": [
+        0,
+        480
+      ],
+      "size": [
+        470,
+        120
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+        "default"
+      ],
+      "title": "UNETLoader"
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        0,
+        830
+      ],
+      "size": [
+        470,
+        140
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "minimax",
+        "default"
+      ],
+      "title": "CLIPLoader"
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        0,
+        1020
+      ],
+      "size": [
+        470,
+        90
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            4,
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "title": "VAELoader"
+    },
+    {
+      "id": 5,
+      "type": "VAELoader",
+      "pos": [
+        0,
+        1160
+      ],
+      "size": [
+        470,
+        90
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "title": "VAELoader"
+    },
+    {
+      "id": 6,
+      "type": "H3MAXMotionPreset",
+      "pos": [
+        520,
+        0
+      ],
+      "size": [
+        380,
+        260
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "title": "2 — Movimento; realismo e câmera opcionais",
+      "properties": {
+        "Node name for S&R": "H3MAXMotionPreset"
+      },
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            7,
+            8
+          ]
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "widgets_values": [
+        "natural",
+        1.0,
+        false,
+        0.65,
+        false,
+        0.8
+      ]
+    },
+    {
+      "id": 7,
+      "type": "MiniMaxH3ImageToVideo",
+      "pos": [
+        520,
+        340
+      ],
+      "size": [
+        400,
+        370
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 4
+        },
+        {
+          "localized_name": "first_frame",
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "localized_name": "last_frame",
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            9
+          ]
+        },
+        {
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageToVideo"
+      },
+      "widgets_values": [
+        "",
+        1280,
+        736,
+        124
+      ],
+      "title": "MiniMaxH3ImageToVideo"
+    },
+    {
+      "id": 8,
+      "type": "LoadImage",
+      "pos": [
+        0,
+        1330
+      ],
+      "size": [
+        470,
+        350
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "selecione_sua_imagem.png",
+        "image"
+      ],
+      "title": "Carregue a imagem / referência 1"
+    },
+    {
+      "id": 9,
+      "type": "RandomNoise",
+      "pos": [
+        520,
+        770
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        123456,
+        "fixed"
+      ],
+      "title": "RandomNoise"
+    },
+    {
+      "id": 10,
+      "type": "BasicScheduler",
+      "pos": [
+        960,
+        0
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "simple",
+        25,
+        1.0
+      ],
+      "title": "BasicScheduler"
+    },
+    {
+      "id": 11,
+      "type": "KSamplerSelect",
+      "pos": [
+        960,
+        220
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "res_multistep"
+      ],
+      "title": "KSamplerSelect"
+    },
+    {
+      "id": 12,
+      "type": "BasicGuider",
+      "pos": [
+        960,
+        430
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 8
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      },
+      "title": "BasicGuider",
+      "widgets_values": []
+    },
+    {
+      "id": 13,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        960,
+        650
+      ],
+      "size": [
+        340,
+        340
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 10
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 11
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 12
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 13
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            15,
+            17
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      },
+      "title": "SamplerCustomAdvanced",
+      "widgets_values": []
+    },
+    {
+      "id": 14,
+      "type": "VAEDecode",
+      "pos": [
+        1400,
+        0
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 15
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "title": "VAEDecode",
+      "widgets_values": []
+    },
+    {
+      "id": 15,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1400,
+        200
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 17
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      },
+      "title": "VAEDecodeAudio",
+      "widgets_values": []
+    },
+    {
+      "id": 16,
+      "type": "CreateVideo",
+      "pos": [
+        1400,
+        400
+      ],
+      "size": [
+        360,
+        180
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        24,
+        8
+      ],
+      "title": "CreateVideo"
+    },
+    {
+      "id": 17,
+      "type": "SaveVideo",
+      "pos": [
+        1820,
+        0
+      ],
+      "size": [
+        520,
+        480
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "H3_MAX/02_H3_MAX_IMAGEM_base",
+        "auto",
+        "auto"
+      ],
+      "title": "SaveVideo"
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      0,
+      6,
+      1,
+      "STRING"
+    ],
+    [
+      3,
+      3,
+      0,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      4,
+      0,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      5,
+      6,
+      1,
+      7,
+      4,
+      "STRING"
+    ],
+    [
+      6,
+      8,
+      0,
+      7,
+      2,
+      "IMAGE"
+    ],
+    [
+      7,
+      6,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      8,
+      6,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      9,
+      7,
+      0,
+      12,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      10,
+      9,
+      0,
+      13,
+      0,
+      "NOISE"
+    ],
+    [
+      11,
+      12,
+      0,
+      13,
+      1,
+      "GUIDER"
+    ],
+    [
+      12,
+      11,
+      0,
+      13,
+      2,
+      "SAMPLER"
+    ],
+    [
+      13,
+      10,
+      0,
+      13,
+      3,
+      "SIGMAS"
+    ],
+    [
+      14,
+      7,
+      1,
+      13,
+      4,
+      "LATENT"
+    ],
+    [
+      15,
+      13,
+      0,
+      14,
+      0,
+      "LATENT"
+    ],
+    [
+      16,
+      4,
+      0,
+      14,
+      1,
+      "VAE"
+    ],
+    [
+      17,
+      13,
+      0,
+      15,
+      0,
+      "LATENT"
+    ],
+    [
+      18,
+      5,
+      0,
+      15,
+      1,
+      "VAE"
+    ],
+    [
+      19,
+      14,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      15,
+      0,
+      16,
+      1,
+      "AUDIO"
+    ],
+    [
+      21,
+      16,
+      0,
+      17,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6,
+      "offset": [
+        60,
+        60
+      ]
+    },
+    "h3max": {
+      "external_video_required": false,
+      "gpu_tested": false,
+      "date": "2026-09-23"
+    }
+  },
+  "version": 0.4,
+  "id": "6e64ed3f-fb8b-55c7-8e05-b6cb7201edfc",
+  "revision": 0,
+  "last_node_id": 17,
+  "last_link_id": 21
+}

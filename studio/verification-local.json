@@ -1,0 +1,103 @@
+{
+  "static_validation": "passed",
+  "workflow_checks": [
+    {
+      "name": "01_H3_MAX_TEXTO.json",
+      "nodes": 16,
+      "links": 20,
+      "sha256": "4881e935e5f2c7da626b4a9c209c3fd864ace1e194d188274c10996c8cccfa56"
+    },
+    {
+      "name": "02_H3_MAX_IMAGEM.json",
+      "nodes": 17,
+      "links": 21,
+      "sha256": "4b2fb4a26ed7a83f59d53d8d9c9f1e0ef686294fb13bc7a966d656c17c16f200"
+    },
+    {
+      "name": "03_H3_MAX_REFERENCIAS.json",
+      "nodes": 18,
+      "links": 23,
+      "sha256": "d4a5d9a5192dab02d882ae98605e144575a3fd31b6c4924584eb2035748669f9"
+    },
+    {
+      "name": "04_H3_MAX_HYBRID_REFERENCIAS.json",
+      "nodes": 18,
+      "links": 23,
+      "sha256": "1310e9f5b13179b2c8f9555a900126ae4d660a0e60b76962c0a4ccc5f6ad8338"
+    },
+    {
+      "name": "05_H3_MAX_TEXTO_REFINE.json",
+      "nodes": 23,
+      "links": 36,
+      "sha256": "3bad2c44b64397bebc7faf01147c4841e89cdef32fb625a53646f5e9c2cb8246"
+    },
+    {
+      "name": "06_H3_MAX_IMAGEM_REFINE.json",
+      "nodes": 24,
+      "links": 37,
+      "sha256": "c94cf171eeceb38a76018d1d3d2725e74a40fe58e11384807d69703cad72f7dd"
+    },
+    {
+      "name": "07_H3_MAX_TEXTO_DEROPE.json",
+      "nodes": 38,
+      "links": 61,
+      "sha256": "fcb27daf53ba4c151893a146b6e9f51704e683d0dbc4e6d6215ae68812cc0a3c"
+    },
+    {
+      "name": "08_H3_MAX_IMAGEM_DEROPE.json",
+      "nodes": 39,
+      "links": 63,
+      "sha256": "23551a80403033c53f678624960fe75451b220dc48a730ec8551ae6599ed8308"
+    }
+  ],
+  "api_prompt_checks": [
+    {
+      "name": "01_H3_MAX_TEXTO.json",
+      "nodes": 16,
+      "sha256": "ab538f313397f7212e7fdb381d3302cc99ddc82d7c823972c4171bf963389df9"
+    },
+    {
+      "name": "02_H3_MAX_IMAGEM.json",
+      "nodes": 17,
+      "sha256": "48a40a8a409f1723472c0a433e2471ba132094156f57f865aef4cb291f426068"
+    },
+    {
+      "name": "03_H3_MAX_REFERENCIAS.json",
+      "nodes": 18,
+      "sha256": "95197862ed5de217bed762844404fc4948ac2de2918f6818d0f5a97d81e67715"
+    },
+    {
+      "name": "04_H3_MAX_HYBRID_REFERENCIAS.json",
+      "nodes": 18,
+      "sha256": "2c4d0bb92e299bf257a5615f515a57b52e18bcd1c170d3dc59367c960930b2cc"
+    },
+    {
+      "name": "05_H3_MAX_TEXTO_REFINE.json",
+      "nodes": 23,
+      "sha256": "abf901b65863a028ea22da12dccbd2dd0cdffa2962dd317ab4b8b553d6e80542"
+    },
+    {
+      "name": "06_H3_MAX_IMAGEM_REFINE.json",
+      "nodes": 24,
+      "sha256": "90f13271947b7593d57b448757b7ea79fecb5416f1fd2ab7ab5e4c8f65f10a92"
+    },
+    {
+      "name": "07_H3_MAX_TEXTO_DEROPE.json",
+      "nodes": 38,
+      "sha256": "c06a3d7dd5822b3f353b40e1c8fa7e02eaa9d4db0b6034fbc59c19418ecf71a8"
+    },
+    {
+      "name": "08_H3_MAX_IMAGEM_DEROPE.json",
+      "nodes": 39,
+      "sha256": "6647961bf216d9133cbee55cac42cc14531fca87d9ae02797d27808393fc2dd1"
+    }
+  ],
+  "model_entries": 24,
+  "docker_build_executed": false,
+  "gpu_render_executed": false,
+  "seedance_comparison_executed": false,
+  "limitations": [
+    "Requires image build, actual /object_info check and GPU render.",
+    "Pinned source does not guarantee compatible runtime dependencies."
+  ]
+}

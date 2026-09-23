@@ -1,0 +1,241 @@
+{
+  "1": {
+    "class_type": "H3MAXDirectorText",
+    "inputs": {
+      "prompt": "A single continuous five-second live-action shot, fixed wide camera, full body and shoes visible. An adult woman in everyday clothes takes two relaxed steps toward a plain wooden chair on a level tiled floor, turns, and sits down naturally. Her feet support her weight before her hips touch the seat; the chair stays in place. Soft daylight, ordinary documentary appearance, natural real-time pace. Quiet room tone and subtle footstep and chair sounds. The entire action remains visible without a cut.",
+      "enabled": false,
+      "seconds": 5.166666666666667,
+      "aspect": "16:9",
+      "seed": 123456789
+    },
+    "_meta": {
+      "title": "1 — Descreva a cena; diretor de texto opcional"
+    }
+  },
+  "2": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "UNETLoader"
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "5": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    },
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "6": {
+    "class_type": "H3MAXMotionPreset",
+    "inputs": {
+      "profile": "base",
+      "motion_multiplier": 1.0,
+      "people_realism": false,
+      "people_strength": 0.65,
+      "camera_motion": false,
+      "camera_strength": 0.8,
+      "model": [
+        "2",
+        0
+      ],
+      "prompt": [
+        "1",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "2 — Movimento; realismo e câmera opcionais"
+    }
+  },
+  "7": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "prompt": [
+        "6",
+        1
+      ],
+      "width": 1280,
+      "height": 736,
+      "length": 124,
+      "clip": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "MiniMaxH3ImageToVideo"
+    }
+  },
+  "8": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 123456789
+    },
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "9": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 25,
+      "denoise": 1.0,
+      "model": [
+        "6",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "10": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    },
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "11": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "6",
+        0
+      ],
+      "conditioning": [
+        "7",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "12": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "8",
+        0
+      ],
+      "guider": [
+        "11",
+        0
+      ],
+      "sampler": [
+        "10",
+        0
+      ],
+      "sigmas": [
+        "9",
+        0
+      ],
+      "latent_image": [
+        "7",
+        1
+      ]
+    },
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "13": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "12",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "14": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "12",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "VAEDecodeAudio"
+    }
+  },
+  "15": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "fps": 24,
+      "bit_depth": 8,
+      "images": [
+        "13",
+        0
+      ],
+      "audio": [
+        "14",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "CreateVideo"
+    }
+  },
+  "16": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "filename_prefix": "H3_MAX/COMPARISON/people_walk_sit/base_123456789",
+      "format": "auto",
+      "format.codec": "auto",
+      "video": [
+        "15",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "SaveVideo"
+    }
+  }
+}

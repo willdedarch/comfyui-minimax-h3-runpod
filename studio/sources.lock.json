@@ -1,0 +1,59 @@
+{
+  "verified_date": "2026-09-23",
+  "base_image": "runpod/pytorch:1.3.2-cu1300-torch2120-ubuntu2404@sha256:41428c446234172cb2700630b81bb55b7077026c7a43cbd2c991fd864e454c61",
+  "core": {
+    "repository": "https://github.com/Comfy-Org/ComfyUI",
+    "commit": "912fca4f39b875a0360f2c5170568176ea813ded"
+  },
+  "compiler": {
+    "repository": "https://github.com/ruashots/open-h3-ir",
+    "commit": "fd031e136ae3d89147324c0d1b2aa65e838c21f5",
+    "commit_date": "2026-08-23T18:18:50Z",
+    "runtime_compatibility_verified": false
+  },
+  "custom_nodes": [
+    {
+      "repository": "https://github.com/scottmudge/ComfyUI_MinimaxH3HybridLoader",
+      "commit": "a44c69b02242e41fbd01e22abe2a492adc853038",
+      "directory": "ComfyUI_MinimaxH3HybridLoader"
+    },
+    {
+      "repository": "https://github.com/ruashots/ComfyUI-OpenH3-IR",
+      "commit": "8660988b033d427f346e72fdbcf2d45ede48edbe",
+      "directory": "ComfyUI-OpenH3-IR"
+    },
+    {
+      "repository": "https://github.com/kijai/ComfyUI-KJNodes",
+      "commit": "d3cfe21625e5170126ce06fbfcfe1d88108688c3",
+      "directory": "ComfyUI-KJNodes"
+    },
+    {
+      "repository": "https://github.com/matlowai/ComfyUI-MAINodes",
+      "commit": "f4868b4a08e8a504ce86db54a17961d399ffa2bc",
+      "directory": "ComfyUI-MAINodes"
+    },
+    {
+      "repository": "https://github.com/xmarre/Comfyui_Minimax_h3_latent_Upscaler-Plus",
+      "commit": "620165a311de9b28a36260219fb5cd370a304e3c",
+      "directory": "Comfyui_Minimax_h3_latent_Upscaler"
+    },
+    {
+      "repository": "https://github.com/seitanism/ComfyUI-H3-Motion-Context-MultiRef",
+      "commit": "361624fb406b63eb6694442eac6c895fc1533a70",
+      "directory": "ComfyUI-H3-Motion-Context-MultiRef"
+    },
+    {
+      "repository": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite",
+      "commit": "4d907bee61e92c2e65af3bd6383a4e4d356126d1",
+      "directory": "ComfyUI-VideoHelperSuite"
+    }
+  ],
+  "templates": {
+    "repository": "https://github.com/Comfy-Org/workflow_templates",
+    "commit": "fc427f00097817d3f7d8099c5259837fa51e1267",
+    "commit_date": "2026-09-22T14:35:59Z",
+    "runtime_compatibility_verified": false
+  },
+  "runtime_verified": false,
+  "python_dependencies": "Resolved at image build; base torch constrained; pip freeze saved inside built image."
+}
