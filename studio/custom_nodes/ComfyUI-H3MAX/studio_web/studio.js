@@ -34,11 +34,13 @@
   let pollTimer = null;
   let activeJob = null;
   let displayedJob = null;
+  let selectedJob = null;
   let libraryJobs = [];
   const referenceAudioByFile = new Map();
   let cancelling = false;
   let inspectorBusy = false;
   let inspectorGraph = null;
+  let configurationRevision = 0;
   let resultFiles = [];
   let pollFailures = 0;
   let configurationChecked = false;
@@ -208,6 +210,8 @@
   }
 
   function updateSummary() {
+    configurationRevision += 1;
+    if (inspectorGraph && inspectorGraph.source === 'prepared') clearInspector('Configuração alterada. Use Ver configuração atual para atualizar as etapas e os nós.');
     if (configurationChecked && isPreview()) setStatus('Configuração alterada.', 'Verifique a nova configuração para conferir o modelo e os ajustes escolhidos.');
     configurationChecked = false;
     updateCompatibility();
@@ -407,6 +411,7 @@
       const queued = await fetchJson('/h3max/api/jobs', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({request, client_id:clientId})});
       if (!queued.prompt_id) throw new Error('O ambiente não confirmou a entrada do vídeo na fila.');
       activeJob = {id:queued.prompt_id, status:'queued', summary:queued.summary, request:queued.request || request, created_at:new Date().toISOString(), outputs:[]};
+      selectJob(activeJob);
       applyPreparedSummary(activeJob.summary, activeJob.request, false);
       storedWrite(activeJobKey, activeJob);
       setStatus('Seu vídeo está na fila.', 'A geração começa assim que a GPU estiver disponível.', 'working');
@@ -451,6 +456,7 @@
 
   function showJobOutputs(job) {
     displayedJob = job;
+    selectJob(job);
     resultFiles = outputVideos(job.outputs);
     $('result-versions').replaceChildren();
     $('result-versions').hidden = resultFiles.length < 2;
@@ -472,6 +478,7 @@
 
   function finishJob(job) {
     activeJob = job; busy = false; pollFailures = 0; storedRemove(activeJobKey);
+    selectJob(job);
     if (outputVideos(job.outputs).length) showJobOutputs(job);
     if (job.status === 'success') {
       if (outputVideos(job.outputs).length) setStatus('Seu vídeo está pronto.', 'Assista, baixe ou reutilize a receita completa em Seus vídeos.', 'success');
@@ -651,7 +658,7 @@
       }
       if (['queued','running'].includes(job.status)) {
         const follow = document.createElement('button'); follow.type = 'button'; follow.className = 'text-button'; follow.textContent = activeJob && activeJob.id === job.id && busy ? 'Acompanhando' : 'Acompanhar'; follow.disabled = busy;
-        follow.addEventListener('click', () => { activeJob = job; busy = true; storedWrite(activeJobKey,job); applyPreparedSummary(job.summary,job.request,false); updateButton(); schedulePoll(100); renderLibrary(); }); actions.append(follow);
+        follow.addEventListener('click', () => { activeJob = job; selectJob(job); busy = true; storedWrite(activeJobKey,job); applyPreparedSummary(job.summary,job.request,false); updateButton(); schedulePoll(100); renderLibrary(); }); actions.append(follow);
       }
       card.append(heading,prompt,details,actions); $('job-list').append(card);
     }
@@ -667,7 +674,16 @@
     finally { $('refresh-library').disabled = false; }
   }
 
-  function inspectorJob() { return displayedJob || activeJob; }
+  function inspectorJob() { return selectedJob || activeJob; }
+  function clearInspector(message) {
+    inspectorGraph = null; $('graph-viewport').replaceChildren(); $('graph-viewport').hidden = true;
+    $('node-inspection').hidden = true; $('graph-models').hidden = true; $('download-graph').hidden = true;
+    $('inspector-status').textContent = message;
+  }
+  function selectJob(job) {
+    selectedJob = job;
+    if (inspectorGraph && inspectorGraph.source === 'saved_job' && inspectorGraph.job_id !== job.id) clearInspector('Outra geração foi selecionada. Use Ver geração selecionada para consultar o grafo correspondente.');
+  }
   function updateInspectorButtons() {
     $('inspect-current').disabled = inspectorBusy || Boolean(uploadCount) || !capabilities;
     $('inspect-job').disabled = inspectorBusy || !inspectorJob() || isPreview();
@@ -754,10 +770,13 @@
     if (inspectorBusy) return;
     inspectorBusy = true; updateInspectorButtons(); $('graph-inspector').open = true;
     $('inspector-status').textContent = 'Carregando as conexões e os componentes desta configuração…';
+    const revision = configurationRevision;
     try {
       const job = saved ? inspectorJob() : null;
       if (saved && !job) throw new Error('Selecione uma geração na biblioteca.');
       const payload = saved ? await fetchJson(`/h3max/api/jobs/${encodeURIComponent(job.id)}/graph`) : await fetchJson('/h3max/api/prepare',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildRequest())});
+      if (!saved && revision !== configurationRevision) { clearInspector('Configuração alterada durante a consulta. Use Ver configuração atual para atualizar o grafo.'); return; }
+      if (saved && (!inspectorJob() || inspectorJob().id !== job.id)) { clearInspector('Outra geração foi selecionada durante a consulta. Abra o grafo da geração selecionada.'); return; }
       renderGraph(payload,saved ? 'saved_job' : 'prepared');
     } catch (error) {
       inspectorGraph = null; $('graph-viewport').hidden = true; $('node-inspection').hidden = true; $('graph-models').hidden = true; $('download-graph').hidden = true; $('inspector-status').textContent = error.message;
@@ -773,6 +792,8 @@
     try {
       capabilities = await fetchJson('/h3max/api/capabilities');
       const preview = isPreview();
+      $('open-comfy').hidden = preview;
+      $('comfy-preview-note').hidden = !preview;
       $('connection').className = `connection ${preview ? 'preview' : capabilities.runtime_ready ? 'ready' : 'warning'}`;
       $('connection-label').textContent = preview ? 'Prévia local' : capabilities.runtime_ready ? 'GPU disponível' : 'Ambiente em preparação';
       if (preview) {
@@ -786,7 +807,7 @@
       loadLibrary();
       const previousJob = storedRead(activeJobKey);
       if (!preview && capabilities.runtime_ready && previousJob && typeof previousJob.id === 'string') {
-        activeJob = previousJob; busy = true; applyPreparedSummary(previousJob.summary, previousJob.request || {}, false); updateButton(); setStatus('Recuperando sua última geração.', 'Consultando o resultado no ambiente.', 'working'); schedulePoll(100);
+        activeJob = previousJob; selectJob(previousJob); busy = true; applyPreparedSummary(previousJob.summary, previousJob.request || {}, false); updateButton(); setStatus('Recuperando sua última geração.', 'Consultando o resultado no ambiente.', 'working'); schedulePoll(100);
       }
     } catch (error) {
       $('connection').className = 'connection warning'; $('connection-label').textContent = 'Sem conexão com o ambiente';
